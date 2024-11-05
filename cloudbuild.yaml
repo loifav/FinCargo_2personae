@@ -1,3 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'europe-west6-docker.pkg.dev/fincargo-0001/frontend-react/frontend-react:$SHORT_SHA', '.']
