@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-west6-docker.pkg.dev/fincargo-0001/frontend-react/frontend-react:$SHORT_SHA', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-west6-docker.pkg.dev/fincargo-0001/frontend-react/frontend-react:$SHORT_SHA']
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args: ['run', 'deploy', 'frontend-fincargo',
+         '--image', 'europe-west6-docker.pkg.dev/fincargo-0001/frontend-react/frontend-react:$SHORT_SHA',
+         '--region', 'europe-west6',
+         '--platform', 'managed']
+images:
+- 'europe-west6-docker.pkg.dev/fincargo-0001/frontend-react/frontend-react:$SHORT_SHA'
