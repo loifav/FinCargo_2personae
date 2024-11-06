@@ -3,6 +3,7 @@ import LayoutSelector from "@layouts/LayoutSelector";
 import ProtectedRoute from "@components/ProtectedRoute";
 import { RouteObject } from "react-router-dom";
 
+
 // Lazy loading des pages
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/invoices/views/invoices"));
@@ -12,6 +13,9 @@ const InvoiceUpload = lazy(
 );
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const Login = lazy(() => import("@modules/auth/views/login"));
+
+const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
+const Transactions = lazy(() => import("@modules/transactions/views/transactions"));
 
 const routes = (props: {
   darkMode: boolean;
@@ -33,7 +37,7 @@ const routes = (props: {
     ),
   },
   {
-    path: "/invoices",
+    path: "/transactions",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -41,14 +45,14 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <Invoices />
+            <Transactions />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>
     ),
   },
   {
-    path: "/invoices/upload",
+    path: "/analytics",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -56,12 +60,13 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <InvoiceUpload />
+            <Analytics/>
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>
     ),
   },
+  
   {
     path: "/invoices/:id",
     element: (
