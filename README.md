@@ -1,50 +1,23 @@
-# React + TypeScript + Vite
+# Fincargo Platform Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Practical Information
 
-Currently, two official plugins are available:
+**URL:** [https://frontend-fincargo-180162974123.europe-west6.run.app/](https://frontend-fincargo-180162974123.europe-west6.run.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Technologies**
 
-## Expanding the ESLint configuration
+- Framework: React JS
+- Builder: Vite.js
+- CSS Framework: Tailwind
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Branching Rules
 
-- Configure the top-level `parserOptions` property like this:
+- **main**: Do not develop directly on the main branch. Each new commit on this branch automatically triggers a production deployment of the application.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **develop**: This branch will be created soon to manage deployments to a testing environment.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **feat/persona-xxxx**: Each new feature should be developed on a branch starting with `feat/`, followed by the first letter of the persona (e.g., `c` for carrier or `f` for freight forwarder), and then the feature name. For example, `feat/c-loadinvoice` or `feat/f-approveinvoice`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## GCP Hosting
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+We use Artifact Registry to store the application's Docker image, which is then deployed on Cloud Run. With Cloud Build and a configured trigger, each new commit on the main branch automatically initiates the deployment process by interpreting the `cloudbuild.yaml` file.
