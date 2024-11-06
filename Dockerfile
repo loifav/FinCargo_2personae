@@ -16,8 +16,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# List the contents of /app to verify the build directory
-RUN ls -la /app
+# List the contents of /app/dist to verify the build directory
+RUN ls -la /app/dist
 
 # Production Stage
 FROM node:18-alpine
@@ -25,8 +25,8 @@ FROM node:18-alpine
 # Install serve globally
 RUN npm install -g serve
 
-# Copy the build folder from the builder stage
-COPY --from=builder /app/build /app/build
+# Copy the dist folder from the builder stage
+COPY --from=builder /app/dist /app/dist
 
 # Serve the build
-CMD ["serve", "-s", "/app/build"]
+CMD ["serve", "-s", "/app/dist"]

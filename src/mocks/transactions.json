@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "carrierName": "Ship Happens",
+        "taxID": "TID123456",
+        "invoiceDate": "2021-01-01",
+        "address": "123 Seaworthy Lane, Suite 101",
+        "country": "USA",
+        "raw": 1000,
+        "net": 900,
+        "reasonCode": 101
+    },
+    {
+        "id": 2,
+        "carrierName": "Freight Expectations",
+        "taxID": "TID654321",
+        "invoiceDate": "2021-02-01",
+        "address": "456 Cargo Cove, Bay 9",
+        "country": "Canada",
+        "raw": 2000,
+        "net": 1800,
+        "reasonCode": 102
+    },
+    {
+        "id": 3,
+        "carrierName": "In the Shipping of Time",
+        "taxID": "TID789012",
+        "invoiceDate": "2021-03-01",
+        "address": "789 Harbor Way, Pier 8",
+        "country": "UK",
+        "raw": 3000,
+        "net": 2700,
+        "reasonCode": 103
+    },
+    {
+        "id": 4,
+        "carrierName": "Deliver Me Softly",
+        "taxID": "TID345678",
+        "invoiceDate": "2021-04-01",
+        "address": "12 Rapid Road, Dock 4",
+        "country": "Germany",
+        "raw": 4000,
+        "net": 3600,
+        "reasonCode": 104
+    },
+    {
+        "id": 5,
+        "carrierName": "On the Road Again",
+        "taxID": "TID901234",
+        "invoiceDate": "2021-05-01",
+        "address": "65 Wanderer Blvd, Stop 20",
+        "country": "France",
+        "raw": 5000,
+        "net": 4500,
+        "reasonCode": 105
+    },
+    {
+        "id": 6,
+        "carrierName": "Loco Motion Logistics",
+        "taxID": "TID234567",
+        "invoiceDate": "2021-06-01",
+        "address": "99 Velocity Street, Unit B",
+        "country": "Italy",
+        "raw": 6000,
+        "net": 5400,
+        "reasonCode": 106
+    },
+    {
+        "id": 7,
+        "carrierName": "Freight of the Bumblebee",
+        "taxID": "TID876543",
+        "invoiceDate": "2021-07-01",
+        "address": "100 Symphony Avenue, Suite 7",
+        "country": "Spain",
+        "raw": 7000,
+        "net": 6300,
+        "reasonCode": 107
+    },
+    {
+        "id": 8,
+        "carrierName": "Parcel to the People",
+        "taxID": "TID543210",
+        "invoiceDate": "2021-08-01",
+        "address": "111 Liberty Path, Station 3",
+        "country": "Netherlands",
+        "raw": 8000,
+        "net": 7200,
+        "reasonCode": 108
+    },
+    {
+        "id": 9,
+        "carrierName": "The Cargo Whisperer",
+        "taxID": "TID135790",
+        "invoiceDate": "2021-09-01",
+        "address": "222 Arctic Circle, Building 12",
+        "country": "Sweden",
+        "raw": 9000,
+        "net": 8100,
+        "reasonCode": 109
+    },
+    {
+        "id": 10,
+        "carrierName": "Rolling in the Freight",
+        "taxID": "TID246801",
+        "invoiceDate": "2021-10-01",
+        "address": "333 Pacific Parade, Dock 9",
+        "country": "Australia",
+        "raw": 10000,
+        "net": 9000,
+        "reasonCode": 110
+    }
+]
