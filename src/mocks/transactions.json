@@ -19,7 +19,7 @@
         "country": "Canada",
         "raw": 2000,
         "net": 1800,
-        "reasonCode": 102
+        "reasonCode": 25
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@
         "country": "UK",
         "raw": 3000,
         "net": 2700,
-        "reasonCode": 103
+        "reasonCode": 200
     },
     {
         "id": 4,
@@ -41,7 +41,7 @@
         "country": "Germany",
         "raw": 4000,
         "net": 3600,
-        "reasonCode": 104
+        "reasonCode": 223
     },
     {
         "id": 5,
@@ -52,7 +52,7 @@
         "country": "France",
         "raw": 5000,
         "net": 4500,
-        "reasonCode": 105
+        "reasonCode": 49
     },
     {
         "id": 6,
@@ -63,7 +63,7 @@
         "country": "Italy",
         "raw": 6000,
         "net": 5400,
-        "reasonCode": 106
+        "reasonCode": 1
     },
     {
         "id": 7,
@@ -74,7 +74,7 @@
         "country": "Spain",
         "raw": 7000,
         "net": 6300,
-        "reasonCode": 107
+        "reasonCode": 25
     },
     {
         "id": 8,
@@ -96,7 +96,7 @@
         "country": "Sweden",
         "raw": 9000,
         "net": 8100,
-        "reasonCode": 109
+        "reasonCode": 250
     },
     {
         "id": 10,
