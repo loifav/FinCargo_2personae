@@ -141,7 +141,7 @@ const TransactionList: React.FC = () => {
   return (
       <Box sx={{ mt: 3 }}>
         <Typography variant="h5" gutterBottom>
-          List of Current Transactions
+          List of Past Transactions
         </Typography>
 
         {/* Filters and Sorters */}
