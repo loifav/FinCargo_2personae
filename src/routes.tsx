@@ -13,6 +13,10 @@ const InvoiceUpload = lazy(
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const Login = lazy(() => import("@modules/auth/views/login"));
 
+const InvoiceDetailsPage = lazy(
+  () => import("@modules/transaction/views/invoiceDetailsPage")
+);
+
 const routes = (props: {
   darkMode: boolean;
   toggleDarkMode: () => void;
@@ -72,6 +76,21 @@ const routes = (props: {
         >
           <Suspense fallback={<div>Loading...</div>}>
             <InvoiceDetail />
+          </Suspense>
+        </LayoutSelector>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/transaction/view/:id",
+    element: (
+      <ProtectedRoute>
+        <LayoutSelector
+          darkMode={props.darkMode}
+          toggleDarkMode={props.toggleDarkMode}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <InvoiceDetailsPage />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>

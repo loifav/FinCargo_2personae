@@ -1,0 +1,125 @@
+{
+    "invoices": [
+      {
+        "id": 1,
+        "invoice_amount": 1200.50,
+        "invoice_attached": true,
+        "carrier_name": "TransporteX",
+        "tax_id": "ES123456789",
+        "invoice_date": "2023-11-01",
+        "address": "Calle Mayor 1, Madrid",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice1.pdf",
+        "status": "pending"
+      },
+      {
+        "id": 2,
+        "invoice_amount": 890.00,
+        "invoice_attached": false,
+        "carrier_name": "Logistica Y",
+        "tax_id": "ES987654321",
+        "invoice_date": "2023-11-02",
+        "address": "Avenida de la Constitución 10, Sevilla",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice2.pdf",
+        "status": "overdue"
+      },
+      {
+        "id": 3,
+        "invoice_amount": 450.75,
+        "invoice_attached": true,
+        "carrier_name": "Envios Rápidos",
+        "tax_id": "ES123123123",
+        "invoice_date": "2023-11-03",
+        "address": "Calle del Prado 5, Barcelona",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice3.pdf",
+        "status": "paid"
+      },
+      {
+        "id": 4,
+        "invoice_amount": 320.40,
+        "invoice_attached": true,
+        "carrier_name": "Servicios Express",
+        "tax_id": "ES321321321",
+        "invoice_date": "2023-11-04",
+        "address": "Gran Via 22, Bilbao",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice4.pdf",
+        "status": "pending"
+      },
+      {
+        "id": 5,
+        "invoice_amount": 710.90,
+        "invoice_attached": false,
+        "carrier_name": "Entregas Rapidas",
+        "tax_id": "ES654654654",
+        "invoice_date": "2023-11-05",
+        "address": "Paseo de la Castellana 100, Madrid",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice5.pdf",
+        "status": "overdue"
+      },
+      {
+        "id": 6,
+        "invoice_amount": 1350.60,
+        "invoice_attached": true,
+        "carrier_name": "Logística Madrid",
+        "tax_id": "ES789789789",
+        "invoice_date": "2023-11-06",
+        "address": "Calle de Alcalá 45, Madrid",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice6.pdf",
+        "status": "paid"
+      },
+      {
+        "id": 7,
+        "invoice_amount": 980.20,
+        "invoice_attached": true,
+        "carrier_name": "Transporte Urbano",
+        "tax_id": "ES456456456",
+        "invoice_date": "2023-11-07",
+        "address": "Avenida de la Paz 12, Valencia",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice7.pdf",
+        "status": "pending"
+      },
+      {
+        "id": 8,
+        "invoice_amount": 430.75,
+        "invoice_attached": false,
+        "carrier_name": "Entrega Fácil",
+        "tax_id": "ES111111111",
+        "invoice_date": "2023-11-08",
+        "address": "Calle Gran Canaria 1, Las Palmas",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice8.pdf",
+        "status": "overdue"
+      },
+      {
+        "id": 9,
+        "invoice_amount": 250.30,
+        "invoice_attached": true,
+        "carrier_name": "Transportes del Norte",
+        "tax_id": "ES222222222",
+        "invoice_date": "2023-11-09",
+        "address": "Plaza Mayor 3, Zaragoza",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice9.pdf",
+        "status": "paid"
+      },
+      {
+        "id": 10,
+        "invoice_amount": 1150.80,
+        "invoice_attached": true,
+        "carrier_name": "Express Iberia",
+        "tax_id": "ES333333333",
+        "invoice_date": "2023-11-10",
+        "address": "Paseo de Gracia 50, Barcelona",
+        "country": "Spain",
+        "document_download_link": "https://example.com/download/invoice10.pdf",
+        "status": "pending"
+      }
+    ]
+  }
+  
