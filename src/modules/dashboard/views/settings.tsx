@@ -3,7 +3,7 @@ import { Box, Typography, Divider } from "@mui/material";
 
 import TransactionFileList from "@modules/dashboard/components/TransactionFileList.tsx";
 
-const Settings: React.FC = () => {
+const PastTransaction: React.FC = () => {
 
     return (
         <Box>
@@ -26,4 +26,4 @@ const Settings: React.FC = () => {
     );
 };
 
-export default Settings;
+export default PastTransaction;

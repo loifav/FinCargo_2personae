@@ -10,7 +10,7 @@ const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const TransactionDetail = lazy(() => import("@modules/dashboard/views/show.tsx"));
 //const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
-const Settings = lazy(() => import("@modules/dashboard/views/settings.tsx"));
+const PastTransaction = lazy(() => import("@modules/dashboard/views/pastTransaction.tsx"));
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 const Transactions = lazy(() => import("@modules/transactions/views/transactions"));
@@ -99,7 +99,7 @@ const routes = (props: {
     ),
   },
     {
-        path: "/settings/:id",
+        path: "/pastTransaction/:id",
         element: (
             <ProtectedRoute>
                 <LayoutSelector
