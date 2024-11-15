@@ -62,7 +62,7 @@ const TransactionList: React.FC = () => {
   }, []);
 
   // Filter transactions based on selected status
-  const handleFilterChange = (event: SelectChangeEvent<string>) => {
+  const handleFilterChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
     setFilterStatus(value);
 
@@ -81,7 +81,7 @@ const TransactionList: React.FC = () => {
   };
 
   // Sort transactions by date or amount
-  const handleSortChange = (event: SelectChangeEvent<string>) => {
+  const handleSortChange = (event: SelectChangeEvent) => {
     const value = event.target.value;
     setSortOrder(value);
 
@@ -149,7 +149,12 @@ const TransactionList: React.FC = () => {
           {/* Status Filter */}
           <FormControl fullWidth variant="outlined">
             <InputLabel>Status</InputLabel>
-            <Select label="Status" value={filterStatus} onChange={handleFilterChange}>
+            <Select
+                label="Status"
+                value={filterStatus}
+                onChange={handleFilterChange}
+                variant="outlined" // Ajout de l'attribut variant
+            >
               <MenuItem value="">
                 <em>All</em>
               </MenuItem>
@@ -162,7 +167,12 @@ const TransactionList: React.FC = () => {
           {/* Sort By */}
           <FormControl fullWidth variant="outlined">
             <InputLabel>Sort By</InputLabel>
-            <Select label="Sort By" value={sortOrder} onChange={handleSortChange}>
+            <Select
+                label="Sort By"
+                value={sortOrder}
+                onChange={handleSortChange}
+                variant="outlined" // Ajout de l'attribut variant
+            >
               <MenuItem value="Aucun">
                 <em>Aucun</em>
               </MenuItem>
