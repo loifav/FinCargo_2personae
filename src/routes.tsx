@@ -9,19 +9,12 @@ const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const TransactionDetail = lazy(() => import("@modules/dashboard/views/show.tsx"));
-const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
+//const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
 const Settings = lazy(() => import("@modules/dashboard/views/settings.tsx"));
 const Login = lazy(() => import("@modules/auth/views/login"));
-
-<<<<<<< HEAD
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 const Transactions = lazy(() => import("@modules/transactions/views/transactions"));
-
-=======
-const InvoiceDetailsPage = lazy(
-  () => import("@modules/transaction/views/invoiceDetailsPage")
-);
->>>>>>> VueTransaction
+const InvoiceDetailsPage = lazy(() => import("@modules/transaction/views/invoiceDetailsPage"));
 
 const routes = (props: {
   darkMode: boolean;
