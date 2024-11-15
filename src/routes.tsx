@@ -3,18 +3,25 @@ import LayoutSelector from "@layouts/LayoutSelector";
 import ProtectedRoute from "@components/ProtectedRoute";
 import { RouteObject } from "react-router-dom";
 
-
 // Lazy loading des pages
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
-const TransactionDetail = lazy(() => import("@modules/dashboard/views/show.tsx"));
+const TransactionDetail = lazy(
+  () => import("@modules/dashboard/views/show.tsx")
+);
 //const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
-const PastTransaction = lazy(() => import("@modules/dashboard/views/pastTransaction.tsx"));
+const PastTransaction = lazy(
+  () => import("@modules/dashboard/views/pastTransaction")
+);
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
-const Transactions = lazy(() => import("@modules/transactions/views/transactions"));
-const InvoiceDetailsPage = lazy(() => import("@modules/transaction/views/invoiceDetailsPage"));
+const Transactions = lazy(
+  () => import("@modules/transactions/views/transactions")
+);
+const InvoiceDetailsPage = lazy(
+  () => import("@modules/transaction/views/invoiceDetailsPage")
+);
 
 const routes = (props: {
   darkMode: boolean;
@@ -76,13 +83,13 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <Analytics/>
+            <Analytics />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>
     ),
   },
-  
+
   {
     path: "/invoices/:id",
     element: (
@@ -98,23 +105,23 @@ const routes = (props: {
       </ProtectedRoute>
     ),
   },
-    {
-        path: "/pastTransaction/:id",
-        element: (
-            <ProtectedRoute>
-                <LayoutSelector
-                    darkMode={props.darkMode}
-                    toggleDarkMode={props.toggleDarkMode}
-                >
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <TransactionDetail/>
-                    </Suspense>
-                </LayoutSelector>
-            </ProtectedRoute>
-        ),
-    },
   {
-    path: "/transaction/view/:id",
+    path: "/pastTransaction/:id",
+    element: (
+      <ProtectedRoute>
+        <LayoutSelector
+          darkMode={props.darkMode}
+          toggleDarkMode={props.toggleDarkMode}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <TransactionDetail />
+          </Suspense>
+        </LayoutSelector>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/:id",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -129,7 +136,7 @@ const routes = (props: {
     ),
   },
   {
-    path: "/settings",
+    path: "/pastTransaction",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -137,7 +144,7 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <Settings />
+            <PastTransaction />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>

@@ -1,12 +1,12 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Importer useNavigate
+import React from "react";
+import { useNavigate } from "react-router-dom"; // Importer useNavigate
 
 interface FilterButtonsProps {
   onFilterChange: (filter: string) => void;
 }
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
-  const navigate = useNavigate();  // Déclarez le hook navigate
+  const navigate = useNavigate(); // Déclarez le hook navigate
 
   // Fonction de gestion du changement de filtre
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -14,14 +14,19 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
     onFilterChange(filter);
 
     // Si l'option "dueAndOverdue" est sélectionnée, rediriger vers la page des factures
-    if (filter === 'dueAndOverdue') {
-      navigate('/DueNOverdue');  // Redirige vers /invoices
+    if (filter === "dueAndOverdue") {
+      navigate("/DueNOverdue"); // Redirige vers /invoices
+    }
+    if (filter === "paidAndCompleted") {
+      navigate("/pastTransaction"); // Redirige vers /invoices
     }
   };
 
   return (
     <div className="mb-6">
-      <label htmlFor="filter" className="text-lg font-medium mr-4">Filter:</label>
+      <label htmlFor="filter" className="text-lg font-medium mr-4">
+        Filter:
+      </label>
       <select
         id="filter"
         onChange={handleFilterChange}
@@ -29,7 +34,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
       >
         <option value="all">All</option>
         <option value="stillToValidate">Still to validate</option>
-        <option value="dueAndOverdue">Due and overdue</option> {/* Cette option redirige */}
+        <option value="dueAndOverdue">Due and overdue</option>{" "}
+        {/* Cette option redirige */}
         <option value="paidAndCompleted">Paid and completed</option>
         <option value="rejected">Rejected</option>
       </select>
