@@ -8,9 +8,7 @@ const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/invoices/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const TransactionDetail = lazy(() => import("@modules/settings/views/show.tsx"));
-const InvoiceUpload = lazy(
-  () => import("@modules/invoices/views/invoiceUpload")
-);
+const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const Login = lazy(() => import("@modules/auth/views/login"));
 
