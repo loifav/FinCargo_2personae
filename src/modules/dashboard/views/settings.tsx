@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Divider } from "@mui/material";
 
-import TransactionFileList from "@modules/settings/components/TransactionFileList.tsx";
+import TransactionFileList from "@modules/dashboard/components/TransactionFileList.tsx";
 
 const Settings: React.FC = () => {
 

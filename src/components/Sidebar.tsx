@@ -254,49 +254,7 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
             </ListItemIcon>
             <ListItemText primary="Analitycs" />
           </ListItemButton>
-            <ListItemButton
-                component={Link}
-                to="/transaction"
-                sx={{
-                    my: 2,
-                    backgroundColor: isActive("/transaction")
-                        ? theme.palette.mode === "dark"
-                            ? theme.palette.cDark[2]
-                            : theme.palette.cLight[4]
-                        : "inherit",
-                    color: isActive("/transaction")
-                        ? theme.palette.mode === "dark"
-                            ? theme.palette.cDark[11]
-                            : theme.palette.cLight[12]
-                        : theme.palette.mode === "dark"
-                            ? theme.palette.cDark[12]
-                            : theme.palette.cLight[10],
-                    "&:hover": {
-                        backgroundColor: isActive("/transaction")
-                            ? theme.palette.mode === "dark"
-                                ? theme.palette.cDark[3]
-                                : theme.palette.cLight[5]
-                            : theme.palette.mode === "dark"
-                                ? theme.palette.cDark[2]
-                                : theme.palette.cLight[4],
-                    },
-                }}
-            >
-                <ListItemIcon>
-                    <InvoicesIcon
-                        sx={{
-                            color: isActive("/transaction")
-                                ? theme.palette.mode === "dark"
-                                    ? theme.palette.cDark[11]
-                                    : theme.palette.cLight[12]
-                                : theme.palette.mode === "dark"
-                                    ? theme.palette.cDark[12]
-                                    : theme.palette.cLight[10],
-                        }}
-                    />
-                </ListItemIcon>
-                <ListItemText primary="Transaction" />
-            </ListItemButton>
+
 
 
             <ListItemButton

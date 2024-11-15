@@ -8,9 +8,9 @@ import { RouteObject } from "react-router-dom";
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
-const TransactionDetail = lazy(() => import("@modules/settings/views/show.tsx"));
+const TransactionDetail = lazy(() => import("@modules/dashboard/views/show.tsx"));
 const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
-const Settings = lazy(() => import("@modules/settings/views/settings"));
+const Settings = lazy(() => import("@modules/dashboard/views/settings.tsx"));
 const Login = lazy(() => import("@modules/auth/views/login"));
 
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
