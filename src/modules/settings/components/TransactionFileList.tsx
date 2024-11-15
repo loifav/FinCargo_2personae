@@ -114,7 +114,7 @@ const TransactionList: React.FC = () => {
   // Handle the View action
   const handleViewClick = () => {
     if (selectedTransaction !== null) {
-      navigate(`/invoices/${selectedTransaction}`);
+      navigate(`/settings/${selectedTransaction}`);
     }
     handleMenuClose();
   };

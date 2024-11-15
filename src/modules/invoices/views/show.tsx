@@ -8,7 +8,7 @@ const InvoiceDetail: React.FC = () => {
   return (
     <div>
       <Typography variant="h4" component="h1">
-        Invoice Detail - {id}
+        Transaction Detail - {id}
       </Typography>
     </div>
   );
