@@ -1,6 +1,7 @@
 import { Box, Typography, Divider } from "@mui/material";
-import InvoiceFileList from "../components/InvoiceFileList";
 import InvoiceUploadButton from "../components/InvoiceUploadButton";
+import DueNOverdueList from "../components/DueNOverdueList";
+import InvoiceFileList from "../components/InvoiceFileList";
 
 const Invoices: React.FC = () => {
   return (
@@ -13,13 +14,14 @@ const Invoices: React.FC = () => {
           fontWeight: 500,
         }}
       >
-        Invoices
+        Invoices liste
       </Typography>
       <Divider />
       {/* Upload invoice */}
-      <InvoiceUploadButton />
+      {/*<InvoiceUploadButton />*/}
       {/* List of invoices */}
-      <InvoiceFileList />
+      <DueNOverdueList />
+      <InvoiceFileList/>
     </Box>
   );
 };
