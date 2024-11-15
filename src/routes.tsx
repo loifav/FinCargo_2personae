@@ -8,9 +8,8 @@ import { RouteObject } from "react-router-dom";
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
-const InvoiceUpload = lazy(
-  () => import("@modules/invoices/views/invoiceUpload")
-);
+const TransactionDetail = lazy(() => import("@modules/settings/views/show.tsx"));
+const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const Login = lazy(() => import("@modules/auth/views/login"));
 
@@ -106,6 +105,21 @@ const routes = (props: {
       </ProtectedRoute>
     ),
   },
+    {
+        path: "/settings/:id",
+        element: (
+            <ProtectedRoute>
+                <LayoutSelector
+                    darkMode={props.darkMode}
+                    toggleDarkMode={props.toggleDarkMode}
+                >
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <TransactionDetail/>
+                    </Suspense>
+                </LayoutSelector>
+            </ProtectedRoute>
+        ),
+    },
   {
     path: "/transaction/view/:id",
     element: (

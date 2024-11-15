@@ -1,17 +1,29 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
+
+import TransactionFileList from "@modules/settings/components/TransactionFileList.tsx";
 
 const Settings: React.FC = () => {
-  return (
-    <div>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Settings
-      </Typography>
-      <Typography variant="body1">
-        This is the content for the Settings page.
-      </Typography>
-    </div>
-  );
+
+    return (
+        <Box>
+            <Typography
+                variant="h4"
+                component="h1"
+                gutterBottom
+                sx={{
+                    fontWeight: 500,
+                }}
+            >
+                Transactions précédentes
+            </Typography>
+            <Divider />
+            {/* Upload invoice */}
+            {/*<InvoiceUploadButton> */}
+            {/* List of invoices */}
+            <TransactionFileList />
+        </Box>
+    );
 };
 
 export default Settings;
