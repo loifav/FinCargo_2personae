@@ -9,7 +9,7 @@ interface Props {
   filterStatus: string; // Statut pour filtrer les transactions (payé, refusée, en attente)
 }
 
-const TransactionFileList: React.FC<Props> = ({ filterStatus }) => {
+const PastTransactionFileList: React.FC<Props> = ({ filterStatus }) => {
   const [transactions, setTransactions] = useState<PastTransaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<PastTransaction[]>([]);
   const navigate = useNavigate();
@@ -75,4 +75,4 @@ const TransactionFileList: React.FC<Props> = ({ filterStatus }) => {
   );
 };
 
-export default TransactionFileList;
+export default PastTransactionFileList;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import TransactionFileList from "@modules/dashboard/components/TransactionFileList";
+import PastTransactionFileList from "@modules/dashboard/components/PastTransactionFileList.tsx";
 
 const PastTransaction: React.FC = () => {
     const [filterStatus, setFilterStatus] = useState<string>("");
@@ -44,7 +44,7 @@ const PastTransaction: React.FC = () => {
             </Box>
 
             {/* Liste des transactions filtrées */}
-            <TransactionFileList filterStatus={filterStatus} />
+            <PastTransactionFileList filterStatus={filterStatus} />
         </Box>
     );
 };
