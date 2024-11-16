@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
-import PastTransactionFilters from "./PastTransactionFilters";
 import PastTransactionTable from "./PastTransactionTable";
-import transactionData from "../../../mocks/transactions.json";
+import transactionData from "../../../mocks/pasttransactions.json";
+import { PastTransaction } from "../../../types/PastTransaction";
 import { useNavigate } from "react-router-dom";
 
-import { PastTransaction } from "../../../types/PastTransaction";
+interface Props {
+  filterStatus: string; // Statut pour filtrer les transactions (payé, refusée, en attente)
+}
 
-const TransactionFileList: React.FC = () => {
+const TransactionFileList: React.FC<Props> = ({ filterStatus }) => {
   const [transactions, setTransactions] = useState<PastTransaction[]>([]);
   const [filteredTransactions, setFilteredTransactions] = useState<PastTransaction[]>([]);
-  const [filterStatus, setFilterStatus] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<string>("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Transformation des données pour ajouter un ID unique
+    // Transformation des données venant du fichier JSON
     const transformedData = transactionData.map((transaction, index) => ({
       id: index + 1,
       carrierName: transaction["carrierName"],
@@ -30,73 +29,47 @@ const TransactionFileList: React.FC = () => {
     }));
 
     setTransactions(transformedData);
-    setFilteredTransactions(transformedData);
   }, []);
 
-  const handleFilterChange = (status: string) => {
-    setFilterStatus(status);
-    let filtered;
+  useEffect(() => {
+    // Applique le filtre selon le statut passé en prop
+    let filtered: PastTransaction[];
 
-    if (status === "payé") {
+    if (filterStatus === "payé") {
       filtered = transactions.filter((transaction) => transaction.reasonCode < 50);
-    } else if (status === "refusée") {
+    } else if (filterStatus === "refusée") {
       filtered = transactions.filter(
           (transaction) => transaction.reasonCode >= 50 && transaction.reasonCode <= 150
       );
-    } else if (status === "en attente") {
+    } else if (filterStatus === "en attente") {
       filtered = transactions.filter((transaction) => transaction.reasonCode > 150);
     } else {
-      filtered = transactions;
+      filtered = transactions; // Aucun filtre, on affiche toutes les transactions
     }
 
     setFilteredTransactions(filtered);
+  }, [filterStatus, transactions]);
+
+  // Fonction pour gérer la navigation (View) vers la transaction sélectionnée
+  const handleViewClick = (id: number) => {
+    navigate(`/${id}`); // Redirige vers la page de la transaction avec l'ID
   };
 
-  const handleSortChange = (order: string) => {
-    setSortOrder(order);
-    const sortedTransactions = [...filteredTransactions];
-
-    if (order === "dateAsc") {
-      sortedTransactions.sort(
-          (a, b) => new Date(a.invoiceDate).getTime() - new Date(b.invoiceDate).getTime()
-      );
-    } else if (order === "dateDesc") {
-      sortedTransactions.sort(
-          (a, b) => new Date(b.invoiceDate).getTime() - new Date(a.invoiceDate).getTime()
-      );
-    } else if (order === "amountAsc") {
-      sortedTransactions.sort((a, b) => a.raw - b.raw);
-    } else if (order === "amountDesc") {
-      sortedTransactions.sort((a, b) => b.raw - a.raw);
-    }
-
-    setFilteredTransactions(sortedTransactions);
-  };
-
-  const handleView = (id: number) => {
-    navigate(`/${id}`);
-  };
-
-  const handleDownload = (id: number) => {
+  // Fonction pour gérer le téléchargement (Download) de la transaction sélectionnée
+  const handleDownloadClick = (id: number) => {
     const transaction = transactions.find((t) => t.id === id);
     if (transaction) {
+      // Implémenter la logique de téléchargement ici (par exemple, générer un PDF)
       console.log("Téléchargement de la transaction : ", transaction);
     }
   };
 
   return (
       <Box>
-        <PastTransactionFilters
-            filterStatus={filterStatus}
-            sortOrder={sortOrder}
-            onFilterChange={handleFilterChange}
-            onSortChange={handleSortChange}
-        />
-
         <PastTransactionTable
-            transactions={filteredTransactions}
-            onView={handleView}
-            onDownload={handleDownload}
+            transactions={filteredTransactions} // Passe les transactions filtrées à la table
+            onViewClick={handleViewClick} // Passe la fonction de navigation à la table
+            onDownloadClick={handleDownloadClick} // Passe la fonction de téléchargement à la table
         />
       </Box>
   );

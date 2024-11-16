@@ -7,24 +7,26 @@ import {
     TableHead,
     TableRow,
     Paper,
-    IconButton,
     Menu,
     MenuItem,
+    IconButton,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { PastTransaction } from "../../../types/PastTransaction";
+import { MoreVert } from "@mui/icons-material";
 
+// Définition des props attendues par PastTransactionTable
 interface Props {
     transactions: PastTransaction[];
-    onView: (id: number) => void;
-    onDownload: (id: number) => void;
+    onViewClick: (id: number) => void;
+    onDownloadClick: (id: number) => void;
 }
 
-const PastTransactionTable: React.FC<Props> = ({ transactions, onView, onDownload }) => {
+const PastTransactionTable: React.FC<Props> = ({ transactions, onViewClick, onDownloadClick }) => {
+    // Gérer le menu pour chaque ligne (View, Download)
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [selectedTransaction, setSelectedTransaction] = React.useState<number | null>(null);
 
-    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, id: number) => {
+    const handleMenuClick = (event: React.MouseEvent<HTMLElement>, id: number) => {
         setAnchorEl(event.currentTarget);
         setSelectedTransaction(id);
     };
@@ -32,6 +34,22 @@ const PastTransactionTable: React.FC<Props> = ({ transactions, onView, onDownloa
     const handleMenuClose = () => {
         setAnchorEl(null);
         setSelectedTransaction(null);
+    };
+
+    // Fonction qui appelle la vue de la transaction
+    const handleViewClick = () => {
+        if (selectedTransaction !== null) {
+            onViewClick(selectedTransaction);  // Appel de la fonction passée en prop
+        }
+        handleMenuClose();
+    };
+
+    // Fonction qui appelle le téléchargement de la transaction
+    const handleDownloadClick = () => {
+        if (selectedTransaction !== null) {
+            onDownloadClick(selectedTransaction);  // Appel de la fonction passée en prop
+        }
+        handleMenuClose();
     };
 
     return (
@@ -45,7 +63,7 @@ const PastTransactionTable: React.FC<Props> = ({ transactions, onView, onDownloa
                         <TableCell align="right">Net</TableCell>
                         <TableCell align="right">Date</TableCell>
                         <TableCell align="right">Reason Code</TableCell>
-                        <TableCell align="right">Actions</TableCell>
+                        <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -57,19 +75,17 @@ const PastTransactionTable: React.FC<Props> = ({ transactions, onView, onDownloa
                             <TableCell align="right">{transaction.net}</TableCell>
                             <TableCell align="right">{transaction.invoiceDate}</TableCell>
                             <TableCell align="right">{transaction.reasonCode}</TableCell>
-                            <TableCell align="right">
-                                <IconButton
-                                    onClick={(event) => handleMenuOpen(event, transaction.id)}
-                                >
-                                    <MoreVertIcon />
+                            <TableCell>
+                                <IconButton onClick={(event) => handleMenuClick(event, transaction.id)}>
+                                    <MoreVert />
                                 </IconButton>
                                 <Menu
                                     anchorEl={anchorEl}
-                                    open={Boolean(anchorEl) && selectedTransaction === transaction.id}
+                                    open={Boolean(anchorEl)}
                                     onClose={handleMenuClose}
                                 >
-                                    <MenuItem onClick={() => onView(transaction.id)}>View</MenuItem>
-                                    <MenuItem onClick={() => onDownload(transaction.id)}>Download</MenuItem>
+                                    <MenuItem onClick={handleViewClick}>View</MenuItem>
+                                    <MenuItem onClick={handleDownloadClick}>Download</MenuItem>
                                 </Menu>
                             </TableCell>
                         </TableRow>

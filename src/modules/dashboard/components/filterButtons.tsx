@@ -18,7 +18,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
       navigate("/DueNOverdue"); // Redirige vers /invoices
     }
     if (filter === "paidAndCompleted") {
-      navigate("/pastTransaction"); // Redirige vers /invoices
+      navigate("/pastTransaction"); // Redirige vers /pastTransaction
     }
   };
 
