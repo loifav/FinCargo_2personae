@@ -12,6 +12,14 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const filter = e.target.value;
     onFilterChange(filter);
+    // Vérifier les cas spécifiques et transmettre les valeurs adaptées
+    if (filter === "rejected") {
+      onFilterChange("refused");
+    } else if (filter === "paidAndCompleted") {
+      onFilterChange("paid");
+    } else {
+      onFilterChange(filter);
+    }
 
     // Si l'option "dueAndOverdue" est sélectionnée, rediriger vers la page des factures
     if (filter === "dueAndOverdue") {
@@ -25,7 +33,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
       navigate("/"); 
     }
     if (filter === "rejected") {
-      navigate("/pastTransaction"); 
+      navigate("/pastTransaction", { state: { filterStatus: "refused" } });
     }
 
   };
