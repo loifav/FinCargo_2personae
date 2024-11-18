@@ -20,6 +20,14 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
     if (filter === "paidAndCompleted") {
       navigate("/pastTransaction"); // Redirige vers /pastTransaction
     }
+
+    if (filter === "stillToValidate") {
+      navigate("/"); 
+    }
+    if (filter === "rejected") {
+      navigate("/pastTransaction"); 
+    }
+
   };
 
   return (
@@ -32,7 +40,6 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
         onChange={handleFilterChange}
         className="bg-black-800 text-black px-4 py-2 rounded focus:outline-none focus:ring-2 focus:black-400"
       >
-        <option value="all">All</option>
         <option value="stillToValidate">Still to validate</option>
         <option value="dueAndOverdue">Due and overdue</option>{" "}
         {/* Cette option redirige */}

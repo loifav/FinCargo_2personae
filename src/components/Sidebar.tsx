@@ -165,51 +165,7 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
             <ListItemText primary="Dashboard" />
           </ListItemButton>
 
-          <ListItemButton
-            component={Link}
-            to="/transactions"
-            sx={{
-              my: 2,
-              backgroundColor: isActive("/transactions")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4]
-                : "inherit",
-              color: isActive("/transactions")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[11]
-                  : theme.palette.cLight[12]
-                : theme.palette.mode === "dark"
-                ? theme.palette.cDark[12]
-                : theme.palette.cLight[10],
-              "&:hover": {
-                backgroundColor: isActive("/transactions")
-                  ? theme.palette.mode === "dark"
-                    ? theme.palette.cDark[3]
-                    : theme.palette.cLight[5]
-                  : theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4],
-              },
-            }}
-          >
-            <ListItemIcon>
-              <InvoicesIcon
-                sx={{
-                  color: isActive("/transactions")
-                    ? theme.palette.mode === "dark"
-                      ? theme.palette.cDark[11]
-                      : theme.palette.cLight[12]
-                    : theme.palette.mode === "dark"
-                    ? theme.palette.cDark[12]
-                    : theme.palette.cLight[10],
-                }}
-              />
-            </ListItemIcon>
-            <ListItemText primary="Transactions" />
-          </ListItemButton>
-
-          
+        
 
           <ListItemButton
             component={Link}

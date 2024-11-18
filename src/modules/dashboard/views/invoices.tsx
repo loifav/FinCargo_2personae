@@ -1,9 +1,17 @@
 import { Box, Typography, Divider } from "@mui/material";
-//import InvoiceUploadButton from "../../invoices/components/InvoiceUploadButton";
+import InvoiceUploadButton from "../../invoices/components/InvoiceUploadButton";
 import DueNOverdueList from "../../invoices/components/DueNOverdueList";
-//import InvoiceFileList from "../../invoices/components/InvoiceFileList";
+import FilterButtons from '../components/filterButtons'; 
+import React, { useState } from 'react';
+
 
 const Invoices: React.FC = () => {
+
+  const [filter, setFilter] = useState<string>('all'); 
+
+  const handleFilterChange = (filter: string) => {
+    setFilter(filter);
+  };
   return (
     <Box>
       <Typography
@@ -16,7 +24,11 @@ const Invoices: React.FC = () => {
       >
         Invoices liste
       </Typography>
+      <FilterButtons onFilterChange={handleFilterChange} />
+
+  
       <Divider />
+      
       {/* Upload invoice */}
       {/*<InvoiceUploadButton />*/}
       {/* List of invoices */}
