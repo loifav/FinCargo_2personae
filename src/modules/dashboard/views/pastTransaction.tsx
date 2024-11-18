@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import PastTransactionFileList from "@modules/dashboard/components/PastTransactionFileList.tsx";
 import FilterButtons from "../components/filterButtons";
+import { useLocation } from "react-router-dom";
 
 const PastTransaction: React.FC = () => {
-    const [filterStatus, setFilterStatus] = useState<string>("");
+    // Récupération de l'état transmis depuis une autre vue
+    const location = useLocation();
+    const initialFilter = location.state?.filterStatus || ""; // Récupère le filtre transmis ou une valeur par défaut
 
+    // État local pour gérer le statut du filtre
+    const [filterStatus, setFilterStatus] = useState<string>(initialFilter);
+
+    // Gestion du changement de filtre
     const handleFilterChange = (status: string) => {
         setFilterStatus(status);
     };
