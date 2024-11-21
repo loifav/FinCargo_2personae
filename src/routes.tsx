@@ -1,6 +1,7 @@
+// routes.tsx
 import { lazy, Suspense } from "react";
-import LayoutSelector from "@layouts/LayoutSelector";
-import ProtectedRoute from "@components/ProtectedRoute";
+import { ProtectedLayout } from "@components/ProtectedLayout";
+import LoadingSpinner from "@components/LoadingSpinner";
 import { RouteObject } from "react-router-dom";
 
 // Lazy loading des pages
@@ -12,95 +13,43 @@ const InvoiceUpload = lazy(
 );
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const Login = lazy(() => import("@modules/auth/views/login"));
+const NotFound = () => <div>404 - Page non trouvée</div>;
 
-const routes = (props: {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}): RouteObject[] => [
+const LazyLoader = (Component: React.FC) => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <Component />
+  </Suspense>
+);
+
+const routes: RouteObject[] = [
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <LayoutSelector
-          darkMode={props.darkMode}
-          toggleDarkMode={props.toggleDarkMode}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <Dashboard />
-          </Suspense>
-        </LayoutSelector>
-      </ProtectedRoute>
-    ),
+    element: <ProtectedLayout>{LazyLoader(Dashboard)}</ProtectedLayout>,
   },
   {
     path: "/invoices",
-    element: (
-      <ProtectedRoute>
-        <LayoutSelector
-          darkMode={props.darkMode}
-          toggleDarkMode={props.toggleDarkMode}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <Invoices />
-          </Suspense>
-        </LayoutSelector>
-      </ProtectedRoute>
-    ),
+    element: <ProtectedLayout>{LazyLoader(Invoices)}</ProtectedLayout>,
   },
   {
     path: "/invoices/upload",
-    element: (
-      <ProtectedRoute>
-        <LayoutSelector
-          darkMode={props.darkMode}
-          toggleDarkMode={props.toggleDarkMode}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <InvoiceUpload />
-          </Suspense>
-        </LayoutSelector>
-      </ProtectedRoute>
-    ),
+    element: <ProtectedLayout>{LazyLoader(InvoiceUpload)}</ProtectedLayout>,
   },
   {
     path: "/invoices/:id",
-    element: (
-      <ProtectedRoute>
-        <LayoutSelector
-          darkMode={props.darkMode}
-          toggleDarkMode={props.toggleDarkMode}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <InvoiceDetail />
-          </Suspense>
-        </LayoutSelector>
-      </ProtectedRoute>
-    ),
+    element: <ProtectedLayout>{LazyLoader(InvoiceDetail)}</ProtectedLayout>,
   },
   {
     path: "/settings",
-    element: (
-      <ProtectedRoute>
-        <LayoutSelector
-          darkMode={props.darkMode}
-          toggleDarkMode={props.toggleDarkMode}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <Settings />
-          </Suspense>
-        </LayoutSelector>
-      </ProtectedRoute>
-    ),
+    element: <ProtectedLayout>{LazyLoader(Settings)}</ProtectedLayout>,
   },
   {
     path: "/login",
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Login />
-      </Suspense>
-    ),
+    element: LazyLoader(Login),
   },
-  { path: "*", element: <div>404 Not Found</div> },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ];
 
 export default routes;

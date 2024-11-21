@@ -10,6 +10,7 @@ export default defineConfig({
       "@components": fileURLToPath(
         new URL("./src/components", import.meta.url)
       ),
+      "@contexts": fileURLToPath(new URL("./src/contexts", import.meta.url)),
       "@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
       // "@stores": fileURLToPath(new URL("./src/stores", import.meta.url)),
       "@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
@@ -17,6 +18,7 @@ export default defineConfig({
       // "@models": fileURLToPath(new URL("./src/models", import.meta.url)),
       "@mokes": fileURLToPath(new URL("./src/mocks", import.meta.url)),
     },
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   plugins: [react()],
 });
