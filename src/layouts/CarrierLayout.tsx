@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Box, CssBaseline, useTheme } from "@mui/material";
 import Sidebar from "@components/Sidebar";
 import Headerbar from "@components/Headerbar";
 
@@ -18,39 +17,36 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  const theme = useTheme();
-
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
-      <CssBaseline />
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <Sidebar
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         darkMode={darkMode}
       />
-      <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+
+      {/* Main Content */}
+      <div className="flex-grow flex flex-col">
+        {/* Header */}
         <Headerbar
           handleDrawerToggle={handleDrawerToggle}
           isDarkMode={darkMode}
           toggleDarkMode={toggleDarkMode}
         />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            paddingTop: "75px",
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[2]
-                : theme.palette.cLight[1],
+
+        {/* Main Content */}
+        <main
+          className={`flex-grow p-4 overflow-auto bg-gray-50 dark:bg-gray-900`}
+          style={{
+            marginTop: "75px", // Espace pour éviter le Header
+            marginLeft: window.innerWidth >= 640 ? "240px" : "0px", // 240px sur desktop, 0 sur mobile
           }}
         >
           {children}
-        </Box>
-      </Box>
-    </Box>
+        </main>
+      </div>
+    </div>
   );
 };
 
