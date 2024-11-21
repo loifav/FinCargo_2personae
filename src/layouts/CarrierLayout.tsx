@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "@components/Sidebar";
 import Headerbar from "@components/Headerbar";
 
@@ -14,8 +14,31 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
   toggleDarkMode,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Vérifie la taille initialement
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Ajoute ou supprime la classe `dark` à <html>
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -37,10 +60,10 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
 
         {/* Main Content */}
         <main
-          className={`flex-grow p-4 overflow-auto bg-gray-50 dark:bg-gray-900`}
+          className="flex-grow px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
           style={{
-            marginTop: "75px", // Espace pour éviter le Header
-            marginLeft: window.innerWidth >= 640 ? "240px" : "0px", // 240px sur desktop, 0 sur mobile
+            marginTop: "75px",
+            marginLeft: isMobile ? "0px" : "240px",
           }}
         >
           {children}

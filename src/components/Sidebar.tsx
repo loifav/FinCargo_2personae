@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <>
       {/* Sidebar for Desktop */}
       <div
-        className={`fixed top-0 left-0 w-60 h-full bg-blue-50 dark:bg-gray-800 ${
+        className={`fixed top-0 left-0 w-60 h-full bg-blue-50 dark:bg-gray-900 ${
           mobileOpen ? "block" : "hidden"
         } sm:block`}
       >
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             className="fixed inset-0 bg-black opacity-50"
             onClick={handleDrawerToggle}
           ></div>
-          <div className="relative w-60 bg-gray-100 dark:bg-gray-800">
+          <div className="relative w-60 bg-gray-100 dark:bg-gray-900">
             <SidebarContent
               darkMode={darkMode}
               handleDrawerToggle={handleDrawerToggle}
@@ -105,7 +105,7 @@ const SidebarContent: React.FC<{
 
       <div className="p-4">
         <button
-          className="w-full flex items-center justify-center gap-2 bg-gray-300 text-gray-900 py-2 px-4 rounded-xl hover:bg-blue-900 hover:text-white transition"
+          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 rounded-xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
           onClick={() => {
             handleDrawerToggle();
             handleLogout();
@@ -131,7 +131,7 @@ const SidebarItem: React.FC<{
       to={to}
       className={`flex items-center gap-4 px-4 py-2 my-3 rounded-xl ${
         active
-          ? "bg-blue-100 text-blue-700 shadow dark:bg-blue-700 dark:text-white"
+          ? "bg-blue-100 text-primary-bluedark shadow dark:bg-primary-bluedark  dark:text-white"
           : "text-gray-700 hover:bg-gray-200 hover:shadow dark:text-gray-300 dark:hover:bg-gray-700"
       } transition`}
       onClick={handleDrawerToggle}

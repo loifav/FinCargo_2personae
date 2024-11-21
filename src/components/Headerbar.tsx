@@ -22,7 +22,7 @@ const Headerbar: React.FC<HeaderProps> = ({
   return (
     <header
       className={`fixed top-0 z-10 ${
-        isDarkMode ? "bg-gray-800" : "bg-gray-50"
+        isDarkMode ? "bg-gray-900" : "bg-blue-50"
       } w-full sm:left-60 sm:w-[calc(100%-240px)]`}
       style={{ height: "75px" }}
     >
@@ -44,15 +44,25 @@ const Headerbar: React.FC<HeaderProps> = ({
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="text-gray-500 dark:text-gray-300">
+          <button
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
+          >
             <FiPlusCircle className="w-6 h-6" />
           </button>
-          <button className="text-gray-500 dark:text-gray-300">
+          <button
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
+          >
             <FiBell className="w-6 h-6" />
           </button>
           <button
             onClick={toggleDarkMode}
-            className="text-gray-500 dark:text-gray-300"
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
           >
             {isDarkMode ? (
               <FiSun className="w-6 h-6" />
