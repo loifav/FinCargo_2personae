@@ -30,7 +30,7 @@ type AuthorizeParams = {
 
 export const authorize = async ({ email, password }: AuthorizeParams) => {
   try {
-    const response = await httpClient.post("/api/v1/users/login/", {
+    const response = await httpClient.post("/api/v1/users/login", {
       email,
       password,
     });
