@@ -5,9 +5,10 @@ import {
   FiSettings as SettingsIcon,
   FiLogOut as LogoutIcon,
 } from "react-icons/fi";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logoLight from "@assets/logo_fincargo_blue.svg";
 import logoDark from "@assets/logo_fincargo_white.svg";
+import { useAuth } from "@contexts/AuthContext";
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -57,15 +58,11 @@ const SidebarContent: React.FC<{
   darkMode: boolean;
   handleDrawerToggle: () => void;
 }> = ({ darkMode, handleDrawerToggle }) => {
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-    navigate("/login");
-  };
-
   const isActive = (path: string) => location.pathname === path;
+
+  const { logout } = useAuth();
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -106,10 +103,7 @@ const SidebarContent: React.FC<{
       <div className="p-4">
         <button
           className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 rounded-xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
-          onClick={() => {
-            handleDrawerToggle();
-            handleLogout();
-          }}
+          onClick={logout}
         >
           <LogoutIcon />
           Logout

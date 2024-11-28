@@ -12,6 +12,7 @@ interface AuthContextType {
   user: User;
   login: (token: string) => void;
   logout: () => void;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,13 +24,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     role: null,
     isAuthenticated: false,
   });
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  const isTokenExpired = (token: string): boolean => {
+    try {
+      const decoded: { exp: number } = jwtDecode(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+      return decoded.exp < currentTime;
+    } catch {
+      return true;
+    }
+  };
 
   useEffect(() => {
     const token = cookies.get("access_token");
     if (token) {
-      updateUser(token);
+      if (isTokenExpired(token)) {
+        logout();
+      } else {
+        updateUser(token);
+        scheduleTokenCheck(token);
+      }
     }
+    setIsLoading(false);
   }, []);
 
   const updateUser = (token: string) => {
@@ -42,9 +60,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const scheduleTokenCheck = (token: string) => {
+    const decoded: { exp: number } = jwtDecode(token);
+    const currentTime = Math.floor(Date.now() / 1000);
+    const delay = (decoded.exp - currentTime) * 1000;
+
+    setTimeout(() => {
+      if (isTokenExpired(token)) {
+        logout();
+      }
+    }, delay);
+  };
+
   const login = (token: string) => {
     cookies.set("access_token", token, { expires: 1 });
     updateUser(token);
+    scheduleTokenCheck(token);
     navigate("/");
   };
 
@@ -55,7 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

@@ -37,8 +37,7 @@ export const authorize = async ({ email, password }: AuthorizeParams) => {
 
     const { access_token } = response.data;
 
-    // Stocker le token dans les cookies
-    cookies.set("access_token", access_token, { expires: 1 }); // Expire après 1 jour
+    cookies.set("access_token", access_token, { expires: 1 });
 
     console.log("Login successful, token stored.");
     return response.data;

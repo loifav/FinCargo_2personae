@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Typography, Paper } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  TextField,
+  Typography,
+  Paper,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { authorize } from "@modules/api/requests/authorize";
 import { useAuth } from "@contexts/AuthContext";
-import logo from "@assets/logo_fincargo_white.svg";
+import logo from "@assets/logo_fincargo_blue.svg";
 
 const Login: React.FC = () => {
-  // const navigate = useNavigate();
   const { login } = useAuth();
 
-  // State pour gérer les champs de formulaire et les erreurs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,14 +28,16 @@ const Login: React.FC = () => {
 
     try {
       const { access_token } = await authorize({ email, password });
-
-      // Utilisez le login du contexte pour gérer le token
       login(access_token);
-    } catch (err) {
+    } catch {
       setError("Invalid email or password. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -115,24 +123,33 @@ const Login: React.FC = () => {
             />
             <TextField
               label="Password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               variant="outlined"
               fullWidth
               margin="normal"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={togglePasswordVisibility}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ marginTop: 2 }}
+            <button
+              className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 mt-4 rounded-xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
               disabled={loading}
             >
               {loading ? "Logging in..." : "Log In"}
-            </Button>
+            </button>
           </form>
         </Paper>
       </Box>
