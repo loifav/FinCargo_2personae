@@ -60,7 +60,7 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
 
         {/* Main Content */}
         <main
-          className="flex-grow px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
+          className="flex-grow px-0 lg:px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
           style={{
             marginLeft: isMobile ? "0px" : "240px",
           }}

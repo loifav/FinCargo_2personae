@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AddInvoice } from "../components/AddInvoice";
 import { PendingInvoices } from "../components/PendingInvoices";
 
 const Invoices: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("Add a new invoice");
-
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const [searchParams] = useSearchParams();
 
   const buttons = [
     { label: "Add a new invoice", color: "" },
@@ -16,17 +16,20 @@ const Invoices: React.FC = () => {
     { label: "Overview", color: "bg-blue-500" },
   ];
 
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab && buttons.some((btn) => btn.label === tab)) {
+      setSelectedButton(tab);
+    }
+  }, [searchParams]);
+
   const handleButtonClick = (button: string) => {
     setSelectedButton(button);
-    setMenuOpen(false); // Ferme le menu sur mobile après la sélection
+    setMenuOpen(false);
   };
 
   return (
-    <div
-      className="p-5 bg-gray-50 dark:bg-gray-600 rounded-xl border-2 dark:border-0 mt-20 border-blue-100 shadow-sm"
-      style={{ minHeight: `calc(100vh - 6rem)` }}
-    >
-      {/* Titre */}
+    <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-none lg:rounded-xl border-0 lg:border-2 dark:border-0 mt-20 border-blue-100 shadow-sm min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-6rem)]">
       <h2 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
         Invoices
       </h2>
@@ -57,7 +60,7 @@ const Invoices: React.FC = () => {
       {/* Mobile view */}
       <div className="sm:hidden">
         <button
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen(!menuOpen)}
           className="py-2 px-4 bg-primary-bluelight dark:bg-primary-bluedark text-white rounded-3xl hover:bg-primary-bluelight w-full text-left"
         >
           {selectedButton}

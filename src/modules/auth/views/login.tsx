@@ -145,7 +145,7 @@ const Login: React.FC = () => {
               }}
             />
             <button
-              className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 mt-4 rounded-xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
+              className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 mt-4 rounded-3xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
               disabled={loading}
             >
               {loading ? "Logging in..." : "Log In"}
