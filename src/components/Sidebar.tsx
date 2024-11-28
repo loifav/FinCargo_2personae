@@ -5,10 +5,9 @@ import {
   FiSettings as SettingsIcon,
   FiLogOut as LogoutIcon,
 } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logoLight from "@assets/logo_fincargo_blue.svg";
 import logoDark from "@assets/logo_fincargo_white.svg";
-import { useAuth } from "@contexts/AuthContext";
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -27,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div
         className={`fixed top-0 left-0 w-60 h-full bg-blue-50 dark:bg-gray-900 ${
           mobileOpen ? "block" : "hidden"
-        } sm:block`}
+        } lg:block`}
       >
         <SidebarContent
           darkMode={darkMode}
@@ -37,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Sidebar for Mobile */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 flex sm:hidden">
+        <div className="fixed inset-0 z-40 flex lg:hidden">
           <div
             className="fixed inset-0 bg-black opacity-50"
             onClick={handleDrawerToggle}
@@ -58,11 +57,15 @@ const SidebarContent: React.FC<{
   darkMode: boolean;
   handleDrawerToggle: () => void;
 }> = ({ darkMode, handleDrawerToggle }) => {
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const handleLogout = () => {
+    console.log("Logging out...");
+    navigate("/login");
+  };
 
-  const { logout } = useAuth();
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -102,8 +105,11 @@ const SidebarContent: React.FC<{
 
       <div className="p-4">
         <button
-          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 rounded-xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
-          onClick={logout}
+          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 rounded-3xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
+          onClick={() => {
+            handleDrawerToggle();
+            handleLogout();
+          }}
         >
           <LogoutIcon />
           Logout
@@ -123,7 +129,7 @@ const SidebarItem: React.FC<{
   return (
     <Link
       to={to}
-      className={`flex items-center gap-4 px-4 py-2 my-3 rounded-xl ${
+      className={`flex items-center gap-4 px-4 py-2 my-3 rounded-3xl ${
         active
           ? "bg-blue-100 text-primary-bluedark shadow dark:bg-primary-bluedark  dark:text-white"
           : "text-gray-700 hover:bg-gray-200 hover:shadow dark:text-gray-300 dark:hover:bg-gray-700"

@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl">
+    <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl mt-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, index) => (
           <div
@@ -46,6 +46,9 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="h-lvh">
+        <h3>hello</h3>
       </div>
     </div>
   );

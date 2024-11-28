@@ -21,15 +21,15 @@ const Headerbar: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header
-      className={`fixed top-0 z-10 ${
+      className={`fixed top-0 z-30 ${
         isDarkMode ? "bg-gray-900" : "bg-blue-50"
-      } w-full sm:left-60 sm:w-[calc(100%-240px)]`}
+      } w-full lg:left-56 lg:w-[calc(100%-240px)]`}
       style={{ height: "75px" }}
     >
       <div className="flex items-center justify-between px-4 h-full">
         <button
           onClick={handleDrawerToggle}
-          className="text-gray-500 dark:text-gray-300 sm:hidden"
+          className="text-gray-500 dark:text-gray-300 lg:hidden"
         >
           <FiMenu className="w-6 h-6" />
         </button>

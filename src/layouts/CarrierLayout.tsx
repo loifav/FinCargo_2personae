@@ -14,13 +14,13 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
   toggleDarkMode,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
+      setIsMobile(window.innerWidth < 1024);
     };
 
     window.addEventListener("resize", handleResize);
@@ -62,7 +62,6 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
         <main
           className="flex-grow px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
           style={{
-            marginTop: "75px",
             marginLeft: isMobile ? "0px" : "240px",
           }}
         >

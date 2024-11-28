@@ -6,7 +6,7 @@ import { RouteObject } from "react-router-dom";
 
 // Lazy loading des pages
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
-const Invoices = lazy(() => import("@modules/invoices/views/invoices"));
+const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const InvoiceUpload = lazy(
   () => import("@modules/invoices/views/invoiceUpload")
