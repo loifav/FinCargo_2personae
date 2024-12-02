@@ -1,25 +1,13 @@
 import React from "react";
 import {
-  Drawer,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Box,
-  ListItemButton,
-  Button,
-} from "@mui/material";
-import {
-  SpaceDashboard as SpaceDashboardIcon,
-  Receipt as InvoicesIcon,
-  Settings as SettingsIcon,
-  Logout as LogoutIcon,
-} from "@mui/icons-material";
+  FiHome as DashboardIcon,
+  FiFileText as InvoicesIcon,
+  FiSettings as SettingsIcon,
+  FiLogOut as LogoutIcon,
+} from "react-icons/fi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
 import logoLight from "@assets/logo_fincargo_blue.svg";
 import logoDark from "@assets/logo_fincargo_white.svg";
-
-const drawerWidth = 240;
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -32,58 +20,45 @@ const Sidebar: React.FC<SidebarProps> = ({
   handleDrawerToggle,
   darkMode,
 }) => {
-  const theme = useTheme();
-
   return (
     <>
-      {/* Drawer for desktop */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          display: { xs: "none", sm: "block" },
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[1]
-                : theme.palette.cLight[2],
-          },
-        }}
+      {/* Sidebar for Desktop */}
+      <div
+        className={`fixed top-0 left-0 w-60 h-full bg-blue-50 dark:bg-gray-900 ${
+          mobileOpen ? "block" : "hidden"
+        } lg:block`}
       >
-        <SidebarContent darkMode={darkMode} />
-      </Drawer>
+        <SidebarContent
+          darkMode={darkMode}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+      </div>
 
-      {/* Drawer for mobile */}
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        sx={{
-          display: { xs: "block", sm: "none" },
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            backgroundImage: "none",
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[2]
-                : theme.palette.cLight[1],
-          },
-        }}
-      >
-        <SidebarContent darkMode={darkMode} />
-      </Drawer>
+      {/* Sidebar for Mobile */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 flex lg:hidden">
+          <div
+            className="fixed inset-0 bg-black opacity-50"
+            onClick={handleDrawerToggle}
+          ></div>
+          <div className="relative w-60 bg-gray-100 dark:bg-gray-900">
+            <SidebarContent
+              darkMode={darkMode}
+              handleDrawerToggle={handleDrawerToggle}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
-const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
+const SidebarContent: React.FC<{
+  darkMode: boolean;
+  handleDrawerToggle: () => void;
+}> = ({ darkMode, handleDrawerToggle }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const theme = useTheme();
 
   const handleLogout = () => {
     console.log("Logging out...");
@@ -93,195 +68,77 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        justifyContent: "space-between",
-      }}
-    >
-      <div>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: 2,
-            boxSizing: "border-box",
-          }}
-        >
-          <Link to="/" style={{ display: "block" }}>
-            <img
-              src={darkMode ? logoDark : logoLight}
-              alt="Logo FinCargo"
-              style={{ maxHeight: "100%", maxWidth: "100%", cursor: "pointer" }}
-            />
-          </Link>
-        </Box>
-
-        <List>
-          <ListItemButton
-            component={Link}
-            to="/"
-            sx={{
-              my: 2,
-              backgroundColor: isActive("/")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4]
-                : "inherit",
-              color: isActive("/")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[11]
-                  : theme.palette.cLight[12]
-                : theme.palette.mode === "dark"
-                ? theme.palette.cDark[12]
-                : theme.palette.cLight[10],
-              "&:hover": {
-                backgroundColor: isActive("/")
-                  ? theme.palette.mode === "dark"
-                    ? theme.palette.cDark[3]
-                    : theme.palette.cLight[5]
-                  : theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4],
-              },
-            }}
-          >
-            <ListItemIcon>
-              <SpaceDashboardIcon
-                sx={{
-                  color: isActive("/")
-                    ? theme.palette.mode === "dark"
-                      ? theme.palette.cDark[11]
-                      : theme.palette.cLight[12]
-                    : theme.palette.mode === "dark"
-                    ? theme.palette.cDark[12]
-                    : theme.palette.cLight[10],
-                }}
-              />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItemButton>
-
-        
-
-          <ListItemButton
-            component={Link}
-            to="/analytics"
-            sx={{
-              my: 2,
-              backgroundColor: isActive("/analytics")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4]
-                : "inherit",
-              color: isActive("/analytics")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[11]
-                  : theme.palette.cLight[12]
-                : theme.palette.mode === "dark"
-                ? theme.palette.cDark[12]
-                : theme.palette.cLight[10],
-              "&:hover": {
-                backgroundColor: isActive("/analytics")
-                  ? theme.palette.mode === "dark"
-                    ? theme.palette.cDark[3]
-                    : theme.palette.cLight[5]
-                  : theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4],
-              },
-            }}
-          >
-            <ListItemIcon>
-              <InvoicesIcon
-                sx={{
-                  color: isActive("/analitycs")
-                    ? theme.palette.mode === "dark"
-                      ? theme.palette.cDark[11]
-                      : theme.palette.cLight[12]
-                    : theme.palette.mode === "dark"
-                    ? theme.palette.cDark[12]
-                    : theme.palette.cLight[10],
-                }}
-              />
-            </ListItemIcon>
-            <ListItemText primary="Analitycs" />
-          </ListItemButton>
-
-
-
-            <ListItemButton
-            component={Link}
-            to="/settings"
-            sx={{
-              my: 2,
-              backgroundColor: isActive("/settings")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4]
-                : "inherit",
-              color: isActive("/settings")
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.cDark[11]
-                  : theme.palette.cLight[12]
-                : theme.palette.mode === "dark"
-                ? theme.palette.cDark[12]
-                : theme.palette.cLight[10],
-              "&:hover": {
-                backgroundColor: isActive("/settings")
-                  ? theme.palette.mode === "dark"
-                    ? theme.palette.cDark[3]
-                    : theme.palette.cLight[5]
-                  : theme.palette.mode === "dark"
-                  ? theme.palette.cDark[2]
-                  : theme.palette.cLight[4],
-              },
-            }}
-          >
-            <ListItemIcon>
-              <SettingsIcon
-                sx={{
-                  color: isActive("/settings")
-                    ? theme.palette.mode === "dark"
-                      ? theme.palette.cDark[11]
-                      : theme.palette.cLight[12]
-                    : theme.palette.mode === "dark"
-                    ? theme.palette.cDark[12]
-                    : theme.palette.cLight[10],
-                }}
-              />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItemButton>
-        </List>
+    <div className="flex flex-col justify-between h-full">
+      <div className="p-4 flex justify-center">
+        <Link to="/" onClick={handleDrawerToggle}>
+          <img
+            src={darkMode ? logoDark : logoLight}
+            alt="Logo FinCargo"
+            className="max-h-12"
+          />
+        </Link>
       </div>
 
-      <Box sx={{ p: 2 }}>
-        <Button
-          fullWidth
-          startIcon={<LogoutIcon />}
-          onClick={handleLogout}
-          sx={{
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[5]
-                : theme.palette.cLight[9],
-            color: "#fff",
-            "&:hover": {
-              backgroundColor:
-                theme.palette.mode === "dark"
-                  ? theme.palette.cDark[6]
-                  : theme.palette.cLight[10],
-            },
+      <nav className="flex-1 px-4">
+        <SidebarItem
+          to="/"
+          icon={<DashboardIcon />}
+          label="Dashboard"
+          active={isActive("/")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+        <SidebarItem
+          to="/invoices"
+          icon={<InvoicesIcon />}
+          label="Invoices"
+          active={isActive("/invoices")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+        <SidebarItem
+          to="/settings"
+          icon={<SettingsIcon />}
+          label="Settings"
+          active={isActive("/settings")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+      </nav>
+
+      <div className="p-4">
+        <button
+          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-blue-500 dark:text-gray-50 text-gray-900 py-2 px-4 rounded-3xl hover:bg-blue-500 dark:hover:bg-blue-700 hover:text-white transition"
+          onClick={() => {
+            handleDrawerToggle();
+            handleLogout();
           }}
         >
+          <LogoutIcon />
           Logout
-        </Button>
-      </Box>
-    </Box>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const SidebarItem: React.FC<{
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  active: boolean;
+  handleDrawerToggle: () => void;
+}> = ({ to, icon, label, active, handleDrawerToggle }) => {
+  return (
+    <Link
+      to={to}
+      className={`flex items-center gap-4 px-4 py-2 my-3 rounded-3xl ${
+        active
+          ? "bg-blue-100 text-blue-800 shadow dark:bg-blue-700 dark:text-white"
+          : "text-gray-700 hover:bg-gray-200 hover:shadow dark:text-gray-300 dark:hover:bg-gray-700"
+      } transition`}
+      onClick={handleDrawerToggle}
+    >
+      <div className="text-lg">{icon}</div>
+      <span>{label}</span>
+    </Link>
   );
 };
 

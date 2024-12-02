@@ -1,29 +1,12 @@
 import React from "react";
 import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  MenuList,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
-  TextField,
-  InputAdornment,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import { useTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-
-import {
-  DarkMode as DarkModeIcon,
-  LightMode as LightModeIcon,
-  AddCircleOutline as AddCircleOutlineIcon,
-  UploadFile as UploadFileIcon,
-  Notifications as NotificationsIcon,
-} from "@mui/icons-material";
+  FiMenu,
+  FiSearch,
+  FiBell,
+  FiPlusCircle,
+  FiSun,
+  FiMoon,
+} from "react-icons/fi";
 
 interface HeaderProps {
   handleDrawerToggle: () => void;
@@ -36,149 +19,60 @@ const Headerbar: React.FC<HeaderProps> = ({
   isDarkMode,
   toggleDarkMode,
 }) => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleUploadClick = () => {
-    handleMenuClose();
-    navigate("/invoices/upload");
-  };
-
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        backgroundImage: "none",
-        boxShadow: "none",
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? theme.palette.cDark[2]
-            : theme.palette.cLight[1],
-        marginLeft: { sm: 0, md: "240px" },
-        width: { sm: "100%", md: "calc(100% - 240px)" },
-      }}
+    <header
+      className={`fixed top-0 z-30 ${
+        isDarkMode ? "bg-gray-900" : "bg-blue-50"
+      } w-full lg:left-56 lg:w-[calc(100%-240px)]`}
+      style={{ height: "75px" }}
     >
-      <Toolbar>
-        {/* Icone mobile */}
-        <IconButton
-          aria-label="open drawer"
-          edge="start"
+      <div className="flex items-center justify-between px-4 h-full">
+        <button
           onClick={handleDrawerToggle}
-          sx={{
-            mr: 2,
-            display: { sm: "none" },
-            color: isDarkMode
-              ? theme.palette.cLight[1]
-              : theme.palette.cDark[6],
-          }}
+          className="text-gray-500 dark:text-gray-300 lg:hidden"
         >
-          <MenuIcon />
-        </IconButton>
+          <FiMenu className="w-6 h-6" />
+        </button>
 
-        {/* Search Bar */}
-        <TextField
-          variant="outlined"
-          placeholder="Search..."
-          size="small"
-          sx={{
-            mr: 2,
-            flexGrow: 1,
-            maxWidth: "300px",
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[3]
-                : theme.palette.cLight[2],
-            borderRadius: "6px",
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                border: "none",
-              },
-              borderRadius: "6px",
-            },
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
+        <div className="relative flex-grow max-w-md mx-4">
+          <FiSearch className="absolute left-3 top-2.5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full pl-10 pr-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg focus:outline-none"
+          />
+        </div>
 
-        <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}></Typography>
-
-        <IconButton
-          aria-label="add"
-          edge="end"
-          color="inherit"
-          onClick={handleMenuOpen}
-          sx={{
-            mx: 0.8,
-            color: isDarkMode
-              ? theme.palette.cLight[1]
-              : theme.palette.cDark[6],
-          }}
-        >
-          <AddCircleOutlineIcon />
-        </IconButton>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleMenuClose}
-          PaperProps={{
-            elevation: 3,
-            sx: { width: 300 },
-          }}
-        >
-          <MenuList>
-            <MenuItem onClick={handleUploadClick}>
-              <ListItemIcon>
-                <UploadFileIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Upload Invoice</ListItemText>
-            </MenuItem>
-          </MenuList>
-        </Menu>
-
-        <IconButton
-          color="inherit"
-          sx={{
-            mx: 0.8,
-            color: isDarkMode
-              ? theme.palette.cLight[1]
-              : theme.palette.cDark[6],
-          }}
-        >
-          <NotificationsIcon />
-        </IconButton>
-
-        {/* Bouton dark/light mode */}
-        <IconButton
-          color="inherit"
-          onClick={toggleDarkMode}
-          sx={{
-            mx: 0.8,
-            color: isDarkMode
-              ? theme.palette.cLight[1]
-              : theme.palette.cDark[6],
-          }}
-        >
-          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-        </IconButton>
-      </Toolbar>
-    </AppBar>
+        <div className="flex items-center gap-4">
+          <button
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
+          >
+            <FiPlusCircle className="w-6 h-6" />
+          </button>
+          <button
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
+          >
+            <FiBell className="w-6 h-6" />
+          </button>
+          <button
+            onClick={toggleDarkMode}
+            className={`${
+              isDarkMode ? "text-gray-50" : "text-primary-bluedark"
+            }`}
+          >
+            {isDarkMode ? (
+              <FiSun className="w-6 h-6" />
+            ) : (
+              <FiMoon className="w-6 h-6" />
+            )}
+          </button>
+        </div>
+      </div>
+    </header>
   );
 };
 

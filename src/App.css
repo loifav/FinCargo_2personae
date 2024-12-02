@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+body {
+  overflow-x: hidden; /* Empêche tout dépassement horizontal */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

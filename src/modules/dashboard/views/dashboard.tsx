@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { CreditProgressBar } from '../components/CreditProgressBar';
-import TransactionTable from '../components/transactionTable';
-import FilterButtons from '../components/filterButtons';  // Importez FilterButtons
+import React, { useState } from "react";
+import { CreditProgressBar } from "../components/CreditProgressBar";
+import TransactionTable from "../components/transactionTable";
+import FilterButtons from "../components/filterButtons"; // Importez FilterButtons
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState([
     {
-      id: '1',
+      id: "1",
       amount: 1500,
-      invoiceUrl: '#',
+      invoiceUrl: "#",
       actions: [
-        { label: 'Accepter', onClick: () => console.log('Accepter') },
-        { label: 'Rejeter', onClick: () => console.log('Rejeter') },
+        { label: "Accepter", onClick: () => console.log("Accepter") },
+        { label: "Rejeter", onClick: () => console.log("Rejeter") },
       ],
-      status: 'stillToValidate', 
+      status: "stillToValidate",
     },
     {
-      id: '2',
+      id: "2",
       amount: 2000,
-      invoiceUrl: '#',
+      invoiceUrl: "#",
       actions: [
-        { label: 'Accepter', onClick: () => console.log('Accepter') },
-        { label: 'Rejeter', onClick: () => console.log('Rejeter') },
+        { label: "Accepter", onClick: () => console.log("Accepter") },
+        { label: "Rejeter", onClick: () => console.log("Rejeter") },
       ],
-      status: 'dueAndOverdue',
+      status: "dueAndOverdue",
     },
   ]);
 
-  const [filter, setFilter] = useState<string>('all'); 
+  const [filter, setFilter] = useState<string>("all");
 
   const handleFilterChange = (filter: string) => {
     setFilter(filter);
   };
 
   const filteredTransactions = transactions.filter((transaction) => {
-    if (filter === 'all') return true;
+    if (filter === "all") return true;
     return transaction.status === filter;
   });
 
@@ -43,9 +43,10 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-6xl font-bold mb-6 text-center text-[#5885af]">Dashboard</h1>
+      <h1 className="text-6xl font-bold mb-6 text-center text-[#5885af]">
+        Dashboard
+      </h1>
 
-    
       <FilterButtons onFilterChange={handleFilterChange} />
 
       <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
@@ -56,5 +57,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
-

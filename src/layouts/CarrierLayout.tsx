@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Box, CssBaseline, useTheme } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import Sidebar from "@components/Sidebar";
 import Headerbar from "@components/Headerbar";
 
@@ -15,42 +14,61 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
   toggleDarkMode,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  const theme = useTheme();
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Vérifie la taille initialement
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Ajoute ou supprime la classe `dark` à <html>
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
-      <CssBaseline />
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <Sidebar
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         darkMode={darkMode}
       />
-      <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+
+      {/* Main Content */}
+      <div className="flex-grow flex flex-col">
+        {/* Header */}
         <Headerbar
           handleDrawerToggle={handleDrawerToggle}
           isDarkMode={darkMode}
           toggleDarkMode={toggleDarkMode}
         />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            paddingTop: "75px",
-            backgroundColor:
-              theme.palette.mode === "dark"
-                ? theme.palette.cDark[2]
-                : theme.palette.cLight[1],
+
+        {/* Main Content */}
+        <main
+          className="flex-grow px-0 lg:px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
+          style={{
+            marginLeft: isMobile ? "0px" : "240px",
           }}
         >
           {children}
-        </Box>
-      </Box>
-    </Box>
+        </main>
+      </div>
+    </div>
   );
 };
 
