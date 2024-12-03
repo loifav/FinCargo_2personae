@@ -165,17 +165,19 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
             <ListItemText primary="Dashboard" />
           </ListItemButton>
 
+        
+
           <ListItemButton
             component={Link}
-            to="/invoices"
+            to="/analytics"
             sx={{
               my: 2,
-              backgroundColor: isActive("/invoices")
+              backgroundColor: isActive("/analytics")
                 ? theme.palette.mode === "dark"
                   ? theme.palette.cDark[2]
                   : theme.palette.cLight[4]
                 : "inherit",
-              color: isActive("/invoices")
+              color: isActive("/analytics")
                 ? theme.palette.mode === "dark"
                   ? theme.palette.cDark[11]
                   : theme.palette.cLight[12]
@@ -183,7 +185,7 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
                 ? theme.palette.cDark[12]
                 : theme.palette.cLight[10],
               "&:hover": {
-                backgroundColor: isActive("/invoices")
+                backgroundColor: isActive("/analytics")
                   ? theme.palette.mode === "dark"
                     ? theme.palette.cDark[3]
                     : theme.palette.cLight[5]
@@ -196,7 +198,7 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
             <ListItemIcon>
               <InvoicesIcon
                 sx={{
-                  color: isActive("/invoices")
+                  color: isActive("/analitycs")
                     ? theme.palette.mode === "dark"
                       ? theme.palette.cDark[11]
                       : theme.palette.cLight[12]
@@ -206,10 +208,12 @@ const SidebarContent: React.FC<{ darkMode: boolean }> = ({ darkMode }) => {
                 }}
               />
             </ListItemIcon>
-            <ListItemText primary="Invoices" />
+            <ListItemText primary="Analitycs" />
           </ListItemButton>
 
-          <ListItemButton
+
+
+            <ListItemButton
             component={Link}
             to="/settings"
             sx={{

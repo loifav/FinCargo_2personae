@@ -5,13 +5,23 @@ import { RouteObject } from "react-router-dom";
 
 // Lazy loading des pages
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
-const Invoices = lazy(() => import("@modules/invoices/views/invoices"));
+const Invoices = lazy(() => import("@modules/dashboard/views/invoices"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
-const InvoiceUpload = lazy(
-  () => import("@modules/invoices/views/invoiceUpload")
+const TransactionDetail = lazy(
+  () => import("@modules/dashboard/views/show.tsx")
 );
-const Settings = lazy(() => import("@modules/settings/views/settings"));
+//const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"));
+const PastTransaction = lazy(
+  () => import("@modules/dashboard/views/pastTransaction")
+);
 const Login = lazy(() => import("@modules/auth/views/login"));
+const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
+const Transactions = lazy(
+  () => import("@modules/transactions/views/transactions")
+);
+const InvoiceDetailsPage = lazy(
+  () => import("@modules/transaction/views/invoiceDetailsPage")
+);
 
 const routes = (props: {
   darkMode: boolean;
@@ -32,8 +42,9 @@ const routes = (props: {
       </ProtectedRoute>
     ),
   },
+
   {
-    path: "/invoices",
+    path: "/DueNOverdue",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -47,8 +58,9 @@ const routes = (props: {
       </ProtectedRoute>
     ),
   },
+
   {
-    path: "/invoices/upload",
+    path: "/transactions",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -56,12 +68,28 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <InvoiceUpload />
+            <Transactions />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/analytics",
+    element: (
+      <ProtectedRoute>
+        <LayoutSelector
+          darkMode={props.darkMode}
+          toggleDarkMode={props.toggleDarkMode}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <Analytics />
+          </Suspense>
+        </LayoutSelector>
+      </ProtectedRoute>
+    ),
+  },
+
   {
     path: "/invoices/:id",
     element: (
@@ -78,7 +106,7 @@ const routes = (props: {
     ),
   },
   {
-    path: "/settings",
+    path: "/pastTransaction/:id",
     element: (
       <ProtectedRoute>
         <LayoutSelector
@@ -86,7 +114,37 @@ const routes = (props: {
           toggleDarkMode={props.toggleDarkMode}
         >
           <Suspense fallback={<div>Loading...</div>}>
-            <Settings />
+            <TransactionDetail />
+          </Suspense>
+        </LayoutSelector>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/:id",
+    element: (
+      <ProtectedRoute>
+        <LayoutSelector
+          darkMode={props.darkMode}
+          toggleDarkMode={props.toggleDarkMode}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <InvoiceDetailsPage />
+          </Suspense>
+        </LayoutSelector>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/pastTransaction",
+    element: (
+      <ProtectedRoute>
+        <LayoutSelector
+          darkMode={props.darkMode}
+          toggleDarkMode={props.toggleDarkMode}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+            <PastTransaction />
           </Suspense>
         </LayoutSelector>
       </ProtectedRoute>
