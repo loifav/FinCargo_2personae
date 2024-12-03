@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FincargoContract from "./FincargoContract";
+import { FiDownload } from "react-icons/fi";
 
 export const AddInvoice: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -16,7 +17,7 @@ export const AddInvoice: React.FC = () => {
       ];
       if (!allowedTypes.includes(file.type)) {
         alert("Please upload a valid PDF, JPEG, or PNG file.");
-        setSelectedFile(null); // Réinitialiser le fichier si le type est incorrect
+        setSelectedFile(null);
         return;
       }
       setSelectedFile(file);
@@ -29,7 +30,7 @@ export const AddInvoice: React.FC = () => {
   };
 
   const handleSaveClick = () => {
-    setIsModalOpen(true); // Ouvrir le modal
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
@@ -59,9 +60,10 @@ export const AddInvoice: React.FC = () => {
         <button
           type="button"
           onClick={handleUploadClick}
-          className="px-6 py-3 bg-primary-bluelight dark:bg-primary-bluedark text-white font-medium rounded-3xl hover:bg-primary-bluedark dark:hover:bg-gray-900"
+          className="px-6 py-3 flex items-center bg-primary-bluelight dark:bg-primary-bluedark text-white font-medium rounded-3xl hover:bg-primary-bluedark dark:hover:bg-gray-900"
         >
           {selectedFile ? "Change File" : "Select a File"}
+          <FiDownload className="ml-2" />
         </button>
 
         {/* File info */}

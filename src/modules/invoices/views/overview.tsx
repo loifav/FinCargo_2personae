@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AddInvoice } from "../components/AddInvoice";
 import { PendingInvoices } from "../components/PendingInvoices";
+import { FiChevronDown } from "react-icons/fi";
 
 const Invoices: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,8 +42,8 @@ const Invoices: React.FC = () => {
             key={label}
             className={`flex-grow py-2 px-4 flex items-center justify-center gap-2 ${
               selectedButton === label
-                ? "bg-primary-bluelight dark:bg-gray-900 text-white"
-                : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-800 text-primary-bluedark dark:text-gray-50"
+                ? "bg-primary-bluelight dark:bg-gray-900 text-white border-2 border-primary-bluedark"
+                : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-800 text-primary-bluedark dark:text-gray-50 border-2 border-gray-400"
             } rounded-3xl`}
             onClick={() => handleButtonClick(label)}
           >
@@ -61,9 +62,10 @@ const Invoices: React.FC = () => {
       <div className="sm:hidden">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="py-2 px-4 bg-primary-bluelight dark:bg-primary-bluedark text-white rounded-3xl hover:bg-primary-bluelight w-full text-left"
+          className="flex items-center justify-between py-2 px-4 bg-primary-bluelight dark:bg-gray-900 text-white rounded-3xl hover:bg-primary-bluelight w-full text-left border-2 border-primary-bluedark"
         >
-          {selectedButton}
+          Stage: {selectedButton}
+          <FiChevronDown />
         </button>
         {menuOpen && (
           <div className="mt-3 flex flex-col space-y-3">
@@ -72,8 +74,8 @@ const Invoices: React.FC = () => {
                 key={label}
                 className={`py-2 px-4 flex items-center justify-between rounded-3xl ${
                   selectedButton === label
-                    ? "bg-primary-bluelight dark:bg-primary-bluedark text-white"
-                    : "bg-gray-100 dark:bg-gray-500 hover:bg-gray-200"
+                    ? "bg-primary-bluelight dark:bg-gray-900 text-white border-2 border-primary-bluedark"
+                    : "bg-gray-100 dark:bg-gray-500 hover:bg-gray-200 border-2 border-gray-400"
                 }`}
                 onClick={() => handleButtonClick(label)}
               >
