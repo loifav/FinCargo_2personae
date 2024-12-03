@@ -61,7 +61,7 @@ const routes: RouteObject[] = [
     element: <ProtectedLayout>{LazyLoader(TransactionDetail)}</ProtectedLayout>,
   },
   {
-    path: "/:id",
+    path: "/transactions/:id",
     element: (
       <ProtectedLayout>{LazyLoader(InvoiceDetailsPage)}</ProtectedLayout>
     ),
