@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 interface User {
-  role: "carrier" | "freight-forwarder" | null;
+  role: "carrier" | "freight_forwarder" | null;
   isAuthenticated: boolean;
 }
 
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const updateUser = (token: string) => {
     try {
-      const decoded: { role: "carrier" | "freight-forwarder" } =
+      const decoded: { role: "carrier" | "freight_forwarder" } =
         jwtDecode(token);
       setUser({ role: decoded.role, isAuthenticated: true });
     } catch {

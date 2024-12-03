@@ -24,7 +24,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
     );
   }
 
-  if (user.role === "freight-forwarder") {
+  if (user.role === "freight_forwarder") {
     return (
       <FreightForwarderLayout
         darkMode={darkMode}
