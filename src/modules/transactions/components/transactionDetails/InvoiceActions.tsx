@@ -1,5 +1,5 @@
 import React from "react";
-import { Invoice } from "../../../types/InvoiceTypes";
+import { Invoice } from "../../../../types/InvoiceTypes";
 
 type InvoiceActionsProps = {
   invoice: Invoice;

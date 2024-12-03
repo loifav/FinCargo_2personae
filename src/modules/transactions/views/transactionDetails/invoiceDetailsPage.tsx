@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import transactionData from "../../../mocks/transaction.json";
-import InvoiceStatus from "../components/InvoiceStatus";
-import InvoiceDetails from "../components/InvoiceDetails";
-import InvoiceActions from "../components/InvoiceActions";
-import { Invoice } from "../../../types/InvoiceTypes";
+import transactionData from "../../../../mocks/transaction.json";
+import InvoiceStatus from "../../components/transactionDetails/InvoiceStatus";
+import InvoiceDetails from "../../components/transactionDetails/InvoiceDetails";
+import InvoiceActions from "../../components/transactionDetails/InvoiceActions";
+import { Invoice } from "../../../../types/InvoiceTypes";
 
 const ViewTransactionDue: React.FC = () => {
   const { id } = useParams<{ id: string }>();

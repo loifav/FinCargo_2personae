@@ -20,7 +20,8 @@ const Transactions = lazy(
   () => import("@modules/transactions/views/transactions")
 );
 const InvoiceDetailsPage = lazy(
-  () => import("@modules/transaction/views/invoiceDetailsPage")
+  () =>
+    import("@modules/transactions/views/transactionDetails/invoiceDetailsPage")
 );
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const NotFound = () => <div>404 - Page non trouvée</div>;

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
-import { Invoice } from "../../../types/InvoiceTypes";
+import { Invoice } from "../../../../types/InvoiceTypes";
 
 type InvoiceDetailsProps = {
   invoice: Invoice;
