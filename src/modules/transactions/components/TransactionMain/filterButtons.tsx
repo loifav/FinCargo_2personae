@@ -7,15 +7,15 @@ interface FilterButtonsProps {
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [selectedButton, setSelectedButton] = useState<string>("To Validated");
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [searchParams] = useSearchParams();
 
   const buttons = [
-    { label: "To Validated", color: "bg-orange-500" },
-    { label: "Due and overdue", color: "bg-orange-500" },
-    { label: "Rejected", color: "bg-red-500" },
-    { label: "Validated and Paid", color: "bg-green-500" },
+    { label: "To Validated", color: "bg-orange-500", filter: "stillToValidate" },
+    { label: "Due and overdue", color: "bg-orange-500", filter: "dueAndOverdue" },
+    { label: "Rejected", color: "bg-red-500", filter: "refused" },
+    { label: "Validated and Paid", color: "bg-green-500", filter: "paid" },
   ];
 
   useEffect(() => {
@@ -23,24 +23,27 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
     if (tab && buttons.some((btn) => btn.label === tab)) {
       setSelectedButton(tab);
     }
-  }, [searchParams]);
+  }, [buttons, searchParams]);
 
-  const handleButtonClick = (label: string) => {
+  const handleButtonClick = (label: string, filter: string) => {
+    // Met à jour le bouton sélectionné
     setSelectedButton(label);
-    onFilterChange(label); // Appelle la fonction de filtrage
 
-    // Navigation basée sur le bouton sélectionné
-    switch (label) {
-      case "To Validated":
+    // Appelle la fonction de filtre
+    onFilterChange(filter);
+
+    // Redirige vers la page correspondante
+    switch (filter) {
+      case "stillToValidate":
         navigate("/");
         break;
-      case "Due and overdue":
+      case "dueAndOverdue":
         navigate("/DueNOverdue");
         break;
-      case "Rejected":
+      case "refused":
         navigate("/pastTransaction", { state: { filterStatus: "refused" } });
         break;
-      case "Validated and Paid":
+      case "paid":
         navigate("/pastTransaction", { state: { filterStatus: "paid" } });
         break;
       default:
@@ -56,16 +59,20 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
 
         {/* Desktop view */}
         <div className="hidden sm:flex flex-row w-full gap-4">
-          {buttons.map(({ label, color }) => (
+          {buttons.map(({ label, color, filter }) => (
               <button
                   key={label}
-                  className={`py-2 px-6 flex-grow text-center text-white font-medium rounded-full ${
+                  className={`py-2 px-6 flex items-center gap-3 justify-center flex-grow text-center font-medium rounded-full transition-colors ${
                       selectedButton === label
-                          ? `${color} ring-2 ring-offset-2 ring-offset-gray-50 dark:ring-offset-gray-700`
-                          : "bg-gray-300 hover:bg-gray-400 dark:bg-gray-500 dark:hover:bg-gray-600"
+                          ? "bg-primary-bluelight dark:bg-gray-900 text-white"
+                          : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-600 text-primary-bluedark dark:text-gray-50"
                   }`}
-                  onClick={() => handleButtonClick(label)}
+                  onClick={() => handleButtonClick(label, filter)}
               >
+            <span
+                className={`w-3 h-3 rounded-full ${color}`}
+                aria-label={`${label} status`}
+            ></span>
                 {label}
               </button>
           ))}
@@ -81,16 +88,20 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
           </button>
           {menuOpen && (
               <div className="mt-4 flex flex-col space-y-3">
-                {buttons.map(({ label, color }) => (
+                {buttons.map(({ label, color, filter }) => (
                     <button
                         key={label}
-                        className={`py-2 px-4 rounded-full ${
+                        className={`py-2 px-4 flex items-center gap-3 rounded-full ${
                             selectedButton === label
-                                ? `${color} text-white`
+                                ? "bg-primary-bluelight dark:bg-primary-bluedark text-white"
                                 : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-600"
                         }`}
-                        onClick={() => handleButtonClick(label)}
+                        onClick={() => handleButtonClick(label, filter)}
                     >
+                <span
+                    className={`w-3 h-3 rounded-full ${color}`}
+                    aria-label={`${label} status`}
+                ></span>
                       {label}
                     </button>
                 ))}
