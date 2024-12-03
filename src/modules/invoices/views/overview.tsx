@@ -17,6 +17,12 @@ const Invoices: React.FC = () => {
     { label: "Overview", color: "bg-blue-500" },
   ];
 
+  const exampleInvoices = [
+    { id: "1", name: "Invoice #123", amount: 250.5, dueDate: "2024-12-01" },
+    { id: "2", name: "Invoice #124", amount: 180.0, dueDate: "2024-12-05" },
+    { id: "3", name: "Invoice #125", amount: 320.75, dueDate: "2024-12-10" },
+  ];
+
   useEffect(() => {
     const tab = searchParams.get("tab");
     if (tab && buttons.some((btn) => btn.label === tab)) {
@@ -95,7 +101,9 @@ const Invoices: React.FC = () => {
       {/* Conditional rendering of components */}
       <div className="mt-10">
         {selectedButton === "Add a new invoice" && <AddInvoice />}
-        {selectedButton === "Pending" && <PendingInvoices />}
+        {selectedButton === "Pending" && (
+          <PendingInvoices invoices={exampleInvoices} />
+        )}
         {selectedButton === "Validated" && (
           <div>Validated invoices content goes here.</div>
         )}
