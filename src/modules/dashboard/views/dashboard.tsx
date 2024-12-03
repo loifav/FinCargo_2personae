@@ -88,16 +88,10 @@ const Dashboard: React.FC = () => {
 
   if (user?.role === "freight_forwarder") {
     return (
-      <div className="p-6">
-        <h1 className="text-6xl font-bold mb-6 text-center text-[#5885af]">
+      <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl mt-20">
+        <h1 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
           Dashboard
         </h1>
-
-        <FilterButtons onFilterChange={handleFilterChange} />
-
-        <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
-
-        <TransactionTable transactions={filteredTransactions} />
       </div>
     );
   }

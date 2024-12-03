@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Box, CssBaseline } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import Sidebar from "@components/Sidebar";
 import Headerbar from "@components/Headerbar";
 
@@ -15,35 +14,52 @@ const FreightForwarderLayout: React.FC<FreightForwarderLayoutProps> = ({
   toggleDarkMode,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Vérifie la taille initialement
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
-      <CssBaseline />
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
       <Sidebar
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         darkMode={darkMode}
       />
-      <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+
+      {/* Main Content */}
+      <div className="flex-grow flex flex-col">
+        {/* Header */}
         <Headerbar
           handleDrawerToggle={handleDrawerToggle}
           isDarkMode={darkMode}
           toggleDarkMode={toggleDarkMode}
         />
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            backgroundColor: darkMode ? "grey.900" : "#2196f3",
+
+        {/* Main Content */}
+        <main
+          className="flex-grow px-0 lg:px-4 overflow-auto bg-blue-50 dark:bg-gray-900"
+          style={{
+            marginLeft: isMobile ? "0px" : "240px",
           }}
         >
           {children}
-        </Box>
-      </Box>
-    </Box>
+        </main>
+      </div>
+    </div>
   );
 };
 
