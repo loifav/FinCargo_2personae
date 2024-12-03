@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import PastTransactionFileList from "@modules/dashboard/components/PastTransactionFileList.tsx";
-import FilterButtons from "../components/filterButtons";
+import PastTransactionFileList from "@modules/transactions/components/transactionPast/PastTransactionFileList.tsx";
+import FilterButtons from "../../components/TransactionMain/filterButtons.tsx";
 import { useLocation } from "react-router-dom";
 
 const PastTransaction: React.FC = () => {

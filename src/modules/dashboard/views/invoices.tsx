@@ -1,7 +1,7 @@
 import { Box, Typography, Divider } from "@mui/material";
 import InvoiceUploadButton from "../../invoices/components/InvoiceUploadButton";
 import DueNOverdueList from "../../invoices/components/DueNOverdueList";
-import FilterButtons from '../components/filterButtons'; 
+import FilterButtons from '../../transactions/components/TransactionMain/filterButtons.tsx';
 import React, { useState } from 'react';
 
 
