@@ -2,8 +2,8 @@
 import React from "react";
 import { Treemap, ResponsiveContainer } from "recharts";
 import { useNavigate } from "react-router-dom";
-import { treemapData } from "@modules/home/components/data/treeMapData"; // Import des données depuis le fichier créé
-import CustomCell from "@modules/home/components/customcell"; // Import du composant CustomCell
+import { treemapData } from "@modules/dashboard/components/freightforwarder/data/treeMapData"; // Import des données depuis le fichier créé
+import CustomCell from "@modules/dashboard/components/freightforwarder/customcell"; // Import du composant CustomCell
 
 const TreeMapContainer: React.FC = () => {
   const navigate = useNavigate();

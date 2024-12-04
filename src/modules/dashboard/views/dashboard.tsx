@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@contexts/AuthContext";
+import CardGrid from "../components/carrier/cardGrid";
+import FreightForwarderDashboard from "../components/freightforwarder/freightForwarderDashboard";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+
+  const { user } = useAuth();
 
   const cards = [
     { title: "Total Users", value: 1200, color: "bg-blue-50" },
@@ -21,6 +26,14 @@ const Dashboard: React.FC = () => {
     },
     { title: "Total Revenue", value: "$50,000", color: "bg-blue-50" },
   ];
+
+  if (user.role === "carrier") {
+    return <CardGrid cards={cards} />;
+  }
+
+  if (user.role === "freight_forwarder") {
+    return <FreightForwarderDashboard />;
+  }
 
   return (
     <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl mt-20">
