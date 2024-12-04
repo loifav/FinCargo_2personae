@@ -1,5 +1,7 @@
 import React from "react";
 import { InvoiceOverviewC } from "../components/carrier/InvoiceOverviewC";
+import { InvoiceOverviewFF } from "../components/freightforwarder/InvoiceOverviewFF";
+
 import { useAuth } from "@contexts/AuthContext";
 
 const Overview: React.FC = () => {
@@ -10,7 +12,7 @@ const Overview: React.FC = () => {
   }
 
   if (user.role === "freight_forwarder") {
-    return <div>Freight Forwarder Invoices Component Coming Soon...</div>;
+    return <InvoiceOverviewFF />;
   }
 
   return (
