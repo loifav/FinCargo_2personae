@@ -89,8 +89,9 @@ function Transactions() {
         <h1 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
           Transactions
         </h1>
-        <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
         <FilterButtons onFilterChange={handleFilterChange} />
+        <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
+
 
         <div className="mt-10">{renderContent()}</div>
       </div>
