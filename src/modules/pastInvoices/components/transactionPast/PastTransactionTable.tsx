@@ -11,7 +11,7 @@ import {
   MenuItem,
   IconButton,
 } from "@mui/material";
-import { PastTransaction } from "../../../../../types/PastTransaction.ts";
+import { PastTransaction } from "../../../../types/PastTransaction.ts";
 import { MoreVert } from "@mui/icons-material";
 
 // Définition des props attendues par PastTransactionTable

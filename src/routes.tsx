@@ -12,10 +12,7 @@ const InvoiceUpload = lazy(
   () => import("@modules/invoices/views/invoiceUpload")
 );
 const PastInvoices = lazy(
-  () =>
-    import(
-      "@modules/invoices/views/freightforwarder/transactionMainPage/pastTransaction"
-    )
+  () => import("@modules/pastInvoices/views/pastTransaction")
 );
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));

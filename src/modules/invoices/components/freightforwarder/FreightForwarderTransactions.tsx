@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import DueOverdue from "../../components/freightforwarder/status/dueOverdue/DueOverdue";
 import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
-import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/TransactionMain/CreditProgressBar";
+import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/CreditProgressBar";
 
 const FreightForwarderTransactions: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
