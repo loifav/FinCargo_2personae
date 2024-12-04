@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Treemap, ResponsiveContainer } from "recharts";
 import { useNavigate } from "react-router-dom";
 
-// Données statiques
 const data = [
-  { name: "Invoices to validate", count: 10, link: "/transactions", fill: "#223c60", },
-  { name: "Invoices validated", count: 3, link: "/transactions", fill: "#223c60", },
-  { name: "Invoices overdue", count: 2, link: "/transactions", fill: "#223c60",  },
-  { name: "Invoices paid", count: 4, link: "/transactions", fill: "#223c60", },
-  { name: "Invoices due", count: 4, link: "/transactions", fill: "#223c60",  },
+  { name: "Invoices to validate", count: 10, link: "/transactions", fill: "#223c60" },
+  { name: "Invoices validated", count: 16, link: "/transactions", fill: "#223c60" },
+  { name: "Invoices overdue", count: 10, link: "/transactions", fill: "#b30000" }, // Rouge foncé
+  { name: "Invoices paid", count: 12, link: "/transactions", fill: "#006400" },
+  { name: "Invoices due", count: 15, link: "/transactions", fill: "#cc7a00" }, // Orange foncé
 ];
 
 const TreeMapContainer: React.FC = () => {
@@ -21,15 +20,15 @@ const TreeMapContainer: React.FC = () => {
   };
 
   return (
-    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#f0f4f8" }}>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "" }}>
       <ResponsiveContainer width="80%" height="80%">
         <Treemap
           data={data}
           dataKey="count"
           nameKey="name"
-          aspectRatio={16 / 9}
+          aspectRatio={7 / 5}
           stroke="#fff"
-          isAnimationActive={true}
+          isAnimationActive={false}
           onClick={handleClick}
           content={<CustomCell />}
         />
@@ -38,33 +37,61 @@ const TreeMapContainer: React.FC = () => {
   );
 };
 
-// Composant personnalisé pour chaque cellule
-const CustomCell = (props: any) => {
+const CustomCell: React.FC<any> = (props) => {
   const { x, y, width, height, name, fill, count } = props;
-  const padding = 0; // Suppression de l'espace entre les cellules
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <g>
+    <g
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => console.log(`Clicked on ${name}`)}
+    >
       <rect
         x={x}
         y={y}
         width={width}
         height={height}
         fill={fill}
-        stroke="#f0f4f8" // Couleur de fond identique à l'arrière-plan
-        style={{ cursor: "pointer" }}
+        stroke="#f0f4f8"
+        style={{
+          cursor: "pointer",
+          transition: "transform 0.3s ease",
+          transform: isHovered ? "scale(1.1)" : "scale(1)",
+          transformOrigin: `${x + width / 2}px ${y + height / 2}px`,
+        }}
         rx={10}
         ry={10}
       />
       <text
         x={x + width / 2}
-        y={y + height / 2}
+        y={y + height / 2 - 10}
         textAnchor="middle"
         fill="#fff"
-        fontSize={14}
-        dy={5} 
+        fontSize={24}
+        fontWeight="bold"
+        style={{
+          fontFamily: "'Arial', sans-serif",
+          pointerEvents: "none",
+        }}
+        dy={5}
       >
-        {`${name} : ${count}`}
+        {count}
+      </text>
+      <text
+        x={x + width / 2}
+        y={y + height / 2 + 10}
+        textAnchor="middle"
+        fill="#fff"
+        fontSize={16}
+        fontWeight="bold"
+        style={{
+          fontFamily: "'Arial', sans-serif",
+          pointerEvents: "none",
+        }}
+        dy={5}
+      >
+        {name}
       </text>
     </g>
   );
