@@ -74,7 +74,6 @@ const PastTransactionTable: React.FC<Props> = ({ transactions, onViewClick, onDo
                             <TableCell align="right">{transaction.raw}</TableCell>
                             <TableCell align="right">{transaction.net}</TableCell>
                             <TableCell align="right">{transaction.invoiceDate}</TableCell>
-                            <TableCell align="right">{transaction.reasonCode}</TableCell>
                             <TableCell>
                                 <IconButton onClick={(event) => handleMenuClick(event, transaction.id)}>
                                     <MoreVert />

@@ -11,18 +11,26 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
 
   const buttons = useMemo(
     () => [
-      {
-        label: "To Validated",
-        color: "bg-orange-500",
-        filter: "toValidate",
-      },
-      {
-        label: "Due and overdue",
-        color: "bg-orange-500",
-        filter: "dueAndOverdue",
-      },
-      { label: "Rejected", color: "bg-red-500", filter: "refused" },
-      { label: "Validated and Paid", color: "bg-green-500", filter: "paid" },
+        {
+            label: "To Validated",
+            color: "bg-orange-500",
+            filter: "toValidate",
+        },
+        {
+            label: "Due and overdue",
+            color: "bg-orange-500",
+            filter: "dueAndOverdue",
+        },
+        {
+            label: "Validated and Paid",
+            color: "bg-green-500",
+            filter: "paid"
+        },
+        {
+            label: "Rejected",
+            color: "bg-red-500",
+            filter: "refused"
+        },
     ],
     []
   );
