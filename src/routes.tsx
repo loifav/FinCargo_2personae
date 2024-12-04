@@ -39,7 +39,7 @@ const LazyLoader = (Component: React.FC) => (
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <ProtectedLayout>{LazyLoader(Dashboard)}</ProtectedLayout>,
+    element: <ProtectedLayout>{LazyLoader(Home)}</ProtectedLayout>,
   },
   {
     path: "/invoices",
@@ -84,10 +84,7 @@ const routes: RouteObject[] = [
     element: <NotFound />,
   },
 
-  {
-    path: "/home",
-    element: <ProtectedLayout>{LazyLoader(Home)}</ProtectedLayout>,
-  },
+ 
 ];
 
 

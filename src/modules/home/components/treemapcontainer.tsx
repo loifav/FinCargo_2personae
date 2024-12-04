@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 // Données statiques
 const data = [
-  { name: "Invoices to validate", count: 2, link: "/transactions", fill: "#223c60",value:3 },
-  { name: "Invoices validated", count: 3, link: "/transactions", fill: "#223c60", value:4 },
-  { name: "Invoices overdue", count: 2, link: "/transactions", fill: "#223c60",value:5 },
-  { name: "Invoices paid", count: 4, link: "/transactions", fill: "#223c60" , value:6},
-  { name: "Invoices due", count: 4, link: "/transactions", fill: "#223c60" , value:7},
+  { name: "Invoices to validate", count: 10, link: "/transactions", fill: "#223c60", },
+  { name: "Invoices validated", count: 3, link: "/transactions", fill: "#223c60", },
+  { name: "Invoices overdue", count: 2, link: "/transactions", fill: "#223c60",  },
+  { name: "Invoices paid", count: 4, link: "/transactions", fill: "#223c60", },
+  { name: "Invoices due", count: 4, link: "/transactions", fill: "#223c60",  },
 ];
 
 const TreeMapContainer: React.FC = () => {
@@ -21,24 +21,27 @@ const TreeMapContainer: React.FC = () => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <Treemap
-        data={data}
-        dataKey="count"
-        nameKey="name"
-        aspectRatio={16 / 9}
-        stroke="#fff"
-        isAnimationActive={true}
-        onClick={handleClick} // Gestion des clics
-        content={<CustomCell />}
-      />
-    </ResponsiveContainer>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#f0f4f8" }}>
+      <ResponsiveContainer width="80%" height="80%">
+        <Treemap
+          data={data}
+          dataKey="count"
+          nameKey="name"
+          aspectRatio={16 / 9}
+          stroke="#fff"
+          isAnimationActive={true}
+          onClick={handleClick}
+          content={<CustomCell />}
+        />
+      </ResponsiveContainer>
+    </div>
   );
 };
 
 // Composant personnalisé pour chaque cellule
 const CustomCell = (props: any) => {
-  const { x, y, width, height, name, fill,value } = props;
+  const { x, y, width, height, name, fill, count } = props;
+  const padding = 0; // Suppression de l'espace entre les cellules
 
   return (
     <g>
@@ -48,8 +51,10 @@ const CustomCell = (props: any) => {
         width={width}
         height={height}
         fill={fill}
-        stroke="#fff"
+        stroke="#f0f4f8" // Couleur de fond identique à l'arrière-plan
         style={{ cursor: "pointer" }}
+        rx={10}
+        ry={10}
       />
       <text
         x={x + width / 2}
@@ -57,8 +62,9 @@ const CustomCell = (props: any) => {
         textAnchor="middle"
         fill="#fff"
         fontSize={14}
+        dy={5} 
       >
-         {`${name} : ${value}`} {/* Formatage du texte */}
+        {`${name} : ${count}`}
       </text>
     </g>
   );
