@@ -12,7 +12,7 @@ interface CardGridProps {
   cards: Card[];
 }
 
-const CardGrid: React.FC<CardGridProps> = ({ cards }) => {
+const CarrierDashboard: React.FC<CardGridProps> = ({ cards }) => {
   return (
     <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl mt-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -33,4 +33,4 @@ const CardGrid: React.FC<CardGridProps> = ({ cards }) => {
   );
 };
 
-export default CardGrid;
+export default CarrierDashboard;
