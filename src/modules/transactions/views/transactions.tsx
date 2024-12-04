@@ -76,9 +76,11 @@ function Transactions() {
       case "dueAndOverdue":
         return <DueOverdue />;
       case "refused":
-        return <div>Transaction rejected</div>;
+        navigate("/pastTransaction", { state: { filterStatus: "refused" } });
+        break;
       case "paid":
-        return <div>Transaction paid</div>;
+        navigate("/pastTransaction", { state: { filterStatus: "paid" } });
+        break;
       default:
         return <div>Default content</div>;
     }
