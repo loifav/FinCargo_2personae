@@ -14,7 +14,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
   darkMode,
   toggleDarkMode,
 }) => {
-  const { user } = useAuth(); // Récupérer l'utilisateur depuis AuthContext
+  const { user } = useAuth();
 
   if (user.role === "carrier") {
     return (
@@ -24,7 +24,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
     );
   }
 
-  if (user.role === "freight-forwarder") {
+  if (user.role === "freight_forwarder") {
     return (
       <FreightForwarderLayout
         darkMode={darkMode}
@@ -35,7 +35,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({
     );
   }
 
-  return <div>Unauthorized</div>; // Optionnel : afficher un message ou rediriger si le rôle est invalide
+  return <div>Unauthorized</div>;
 };
 
 export default LayoutSelector;

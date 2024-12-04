@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 interface User {
-  role: "carrier" | "freight-forwarder" | null;
+  role: "carrier" | "freight_forwarder" | null;
   isAuthenticated: boolean;
 }
 

@@ -1,113 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { AddInvoice } from "../components/AddInvoice";
-import { PendingInvoices } from "../components/PendingInvoices";
-import { FiChevronDown } from "react-icons/fi";
+import React from "react";
+import { InvoiceOverviewC } from "../components/carrier/InvoiceOverviewC";
+import { useAuth } from "@contexts/AuthContext";
 
-const Invoices: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedButton, setSelectedButton] = useState("Add a new invoice");
-  const [searchParams] = useSearchParams();
+const Overview: React.FC = () => {
+  const { user } = useAuth();
 
-  const buttons = [
-    { label: "Add a new invoice", color: "" },
-    { label: "Pending", color: "bg-orange-500" },
-    { label: "Validated", color: "bg-green-500" },
-    { label: "Rejected", color: "bg-red-500" },
-    { label: "Overview", color: "bg-blue-500" },
-  ];
+  if (user.role === "carrier") {
+    return <InvoiceOverviewC />;
+  }
 
-  useEffect(() => {
-    const tab = searchParams.get("tab");
-    if (tab && buttons.some((btn) => btn.label === tab)) {
-      setSelectedButton(tab);
-    }
-  }, [searchParams]);
-
-  const handleButtonClick = (button: string) => {
-    setSelectedButton(button);
-    setMenuOpen(false);
-  };
+  if (user.role === "freight_forwarder") {
+    return <div>Freight Forwarder Invoices Component Coming Soon...</div>;
+  }
 
   return (
-    <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-none lg:rounded-xl border-0 lg:border-2 dark:border-0 mt-20 border-blue-100 shadow-sm min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-6rem)]">
-      <h2 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
-        Invoices
+    <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-xl mt-20 border-2 border-blue-100 shadow-sm">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+        Unauthorized
       </h2>
-
-      {/* Desktop view */}
-      <div className="hidden sm:flex flex-row w-full mb-10 gap-5">
-        {buttons.map(({ label, color }) => (
-          <button
-            key={label}
-            className={`flex-grow py-2 px-4 flex items-center justify-center gap-2 ${
-              selectedButton === label
-                ? "bg-primary-bluelight dark:bg-gray-900 text-white border-2 border-primary-bluedark"
-                : "bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-800 text-primary-bluedark dark:text-gray-50 border-2 border-gray-400"
-            } rounded-3xl`}
-            onClick={() => handleButtonClick(label)}
-          >
-            {label}
-            {color && (
-              <span
-                className={`w-3 h-3 rounded-full ${color}`}
-                aria-label={`${label} status`}
-              ></span>
-            )}
-          </button>
-        ))}
-      </div>
-
-      {/* Mobile view */}
-      <div className="sm:hidden">
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="flex items-center justify-between py-2 px-4 bg-primary-bluelight dark:bg-gray-900 text-white rounded-3xl hover:bg-primary-bluelight w-full text-left border-2 border-primary-bluedark"
-        >
-          Stage: {selectedButton}
-          <FiChevronDown />
-        </button>
-        {menuOpen && (
-          <div className="mt-3 flex flex-col space-y-3">
-            {buttons.map(({ label, color }) => (
-              <button
-                key={label}
-                className={`py-2 px-4 flex items-center justify-between rounded-3xl ${
-                  selectedButton === label
-                    ? "bg-primary-bluelight dark:bg-gray-900 text-white border-2 border-primary-bluedark"
-                    : "bg-gray-100 dark:bg-gray-500 hover:bg-gray-200 border-2 border-gray-400"
-                }`}
-                onClick={() => handleButtonClick(label)}
-              >
-                {label}
-                {color && (
-                  <span
-                    className={`w-3 h-3 rounded-full ${color}`}
-                    aria-label={`${label} status`}
-                  ></span>
-                )}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Conditional rendering of components */}
-      <div className="mt-10">
-        {selectedButton === "Add a new invoice" && <AddInvoice />}
-        {selectedButton === "Pending" && <PendingInvoices />}
-        {selectedButton === "Validated" && (
-          <div>Validated invoices content goes here.</div>
-        )}
-        {selectedButton === "Rejected" && (
-          <div>Rejected invoices content goes here.</div>
-        )}
-        {selectedButton === "Overview" && (
-          <div>Overview content goes here.</div>
-        )}
-      </div>
+      <p className="text-gray-600 dark:text-gray-400">
+        You do not have access to this page.
+      </p>
     </div>
   );
 };
 
-export default Invoices;
+export default Overview;
