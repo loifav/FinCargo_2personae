@@ -1,6 +1,7 @@
 // TransactionTable.tsx
 import TransactionActions from './transactionAction';
 import { PictureAsPdf } from '@mui/icons-material';
+import transactionData from "../../../mocks/transaction.json"; 
 
 interface Transaction {
   id: string;

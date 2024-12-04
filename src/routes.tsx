@@ -8,6 +8,7 @@ import { RouteObject } from "react-router-dom";
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
+const Home = lazy(() => import("@modules/home/views/dashboard"));
 const TransactionDetail = lazy(
   () => import("@modules/dashboard/views/show.tsx")
 );
@@ -26,16 +27,19 @@ const InvoiceDetailsPage = lazy(
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const NotFound = () => <div>404 - Page non trouvée</div>;
 
+
+
 const LazyLoader = (Component: React.FC) => (
   <Suspense fallback={<LoadingSpinner />}>
     <Component />
   </Suspense>
 );
 
+
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <ProtectedLayout>{LazyLoader(Dashboard)}</ProtectedLayout>,
+    element: <ProtectedLayout>{LazyLoader(Home)}</ProtectedLayout>,
   },
   {
     path: "/invoices",
@@ -79,6 +83,10 @@ const routes: RouteObject[] = [
     path: "*",
     element: <NotFound />,
   },
+
+ 
 ];
+
+
 
 export default routes;
