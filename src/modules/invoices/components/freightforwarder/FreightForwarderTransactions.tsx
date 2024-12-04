@@ -1,9 +1,10 @@
+import React from "react";
 import { useSearchParams } from "react-router-dom";
-import DueOverdue from "../components/status/dueOverdue/DueOverdue";
-import FilterButtons from "@modules/transactions/components/filterButtons";
-import { CreditProgressBar } from "@modules/transactions/components/TransactionMain/CreditProgressBar.tsx";
+import DueOverdue from "../../components/freightforwarder/status/dueOverdue/DueOverdue";
+import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
+import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/TransactionMain/CreditProgressBar";
 
-function Transactions() {
+const FreightForwarderTransactions: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterStatus = searchParams.get("tab") || "toValidate";
 
@@ -32,7 +33,7 @@ function Transactions() {
   return (
     <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-none lg:rounded-xl border-0 lg:border-2 dark:border-0 mt-20 border-blue-100 shadow-sm min-h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-6rem)]">
       <h1 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
-        Transactions
+        Invoices
       </h1>
       <FilterButtons onFilterChange={handleFilterChange} />
       <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
@@ -40,6 +41,6 @@ function Transactions() {
       <div className="mt-10">{renderContent()}</div>
     </div>
   );
-}
+};
 
-export default Transactions;
+export default FreightForwarderTransactions;

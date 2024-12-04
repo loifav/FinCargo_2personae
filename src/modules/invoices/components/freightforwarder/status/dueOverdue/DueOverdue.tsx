@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Invoice } from "../../../../../types/InvoiceTypes";
-import transactionData from "../../../../../mocks/transaction.json";
+import { Invoice } from "../../../../../../types/InvoiceTypes";
+import transactionData from "../../../../../../mocks/transaction.json";
 
 const DueOverdue = () => {
   const invoices: Invoice[] = transactionData.invoices;

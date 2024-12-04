@@ -8,28 +8,17 @@ import { RouteObject } from "react-router-dom";
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
-const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"))
-const Home = lazy(() => import("@modules/home/views/dashboard"));
-const TransactionDetail = lazy(
-  () => import("@modules/transactions/views/transactionMainPage/show.tsx")
+const InvoiceUpload = lazy(
+  () => import("@modules/invoices/views/invoiceUpload")
 );
 const PastTransaction = lazy(
   () =>
     import(
-      "@modules/transactions/views/transactionMainPage/pastTransaction.tsx"
+      "@modules/invoices/views/freightforwarder/transactionMainPage/pastTransaction"
     )
 );
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
-const Transactions = lazy(
-  () => import("@modules/transactions/views/transactions")
-);
-const transactionDetailsPage = lazy(
-  () =>
-    import(
-      "@modules/transactions/views/transactionDetails/transactionDetailsPage"
-    )
-);
 
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const NotFound = () => <div>404 - Page non trouvée</div>;
@@ -58,26 +47,12 @@ const routes: RouteObject[] = [
     element: <ProtectedLayout>{LazyLoader(InvoiceDetail)}</ProtectedLayout>,
   },
   {
-    path: "/transactions",
-    element: <ProtectedLayout>{LazyLoader(Transactions)}</ProtectedLayout>,
-  },
-  {
     path: "/analytics",
     element: <ProtectedLayout>{LazyLoader(Analytics)}</ProtectedLayout>,
   },
   {
     path: "/pastTransaction",
     element: <ProtectedLayout>{LazyLoader(PastTransaction)}</ProtectedLayout>,
-  },
-  {
-    path: "/pastTransaction/:id",
-    element: <ProtectedLayout>{LazyLoader(TransactionDetail)}</ProtectedLayout>,
-  },
-  {
-    path: "/transactions/:id",
-    element: (
-      <ProtectedLayout>{LazyLoader(transactionDetailsPage)}</ProtectedLayout>
-    ),
   },
   {
     path: "/settings",

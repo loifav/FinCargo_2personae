@@ -1,18 +1,17 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import transactionData from "../../../../mocks/transaction.json";
-import InvoiceStatus from "../../components/transactionDetails/InvoiceStatus";
-import InvoiceDetails from "../../components/transactionDetails/InvoiceDetails";
-import InvoiceActions from "../../components/transactionDetails/InvoiceActions";
-import { Invoice } from "../../../../types/InvoiceTypes";
-import Button from "@mui/material/Button"; // Assuming you're using Material-UI for Button
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"; // Assuming you're using Material-UI for the icon
+import transactionData from "../../../../../mocks/transaction.json";
+import InvoiceStatus from "./InvoiceStatus";
+import InvoiceDetails from "./InvoiceDetails";
+import InvoiceActions from "./InvoiceActions";
+import { Invoice } from "../../../../../types/InvoiceTypes";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const ViewTransactionDetails: React.FC = () => {
+const TransactionDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  // Check if the id is missing or invalid
   if (!id) {
     return <div className="text-red-500">Invoice ID missing from URL</div>;
   }
@@ -78,4 +77,4 @@ const ViewTransactionDetails: React.FC = () => {
   );
 };
 
-export default ViewTransactionDetails;
+export default TransactionDetails;
