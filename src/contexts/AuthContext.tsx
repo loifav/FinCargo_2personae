@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const updateUser = (token: string) => {
     try {
-      const decoded: { role: "carrier" | "freight-forwarder" } =
+      const decoded: { role: "carrier" | "freight_forwarder" } =
         jwtDecode(token);
       setUser({ role: decoded.role, isAuthenticated: true });
     } catch {
