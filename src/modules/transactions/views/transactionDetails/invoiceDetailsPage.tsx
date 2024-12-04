@@ -6,7 +6,7 @@ import InvoiceDetails from "../../components/transactionDetails/InvoiceDetails";
 import InvoiceActions from "../../components/transactionDetails/InvoiceActions";
 import { Invoice } from "../../../../types/InvoiceTypes";
 
-const ViewTransactionDue: React.FC = () => {
+const viewTransactionDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   if (!id) {
@@ -61,4 +61,4 @@ const ViewTransactionDue: React.FC = () => {
   );
 };
 
-export default ViewTransactionDue;
+export default viewTransactionDetails;

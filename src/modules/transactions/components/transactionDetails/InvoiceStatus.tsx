@@ -11,30 +11,63 @@ const InvoiceStatus: React.FC<InvoiceStatusProps> = ({ status }) => {
         return {
           color: "text-yellow-600",
           bg: "bg-yellow-50 border border-yellow-400",
-          label: "To be validated",
+          label: "Still to validate",
+          progressWidth: "w-1/5",
+          progressColor: "bg-yellow-500",
         };
-      case "overdue":
+      case "rejected":
         return {
           color: "text-red-600",
           bg: "bg-red-50 border border-red-400",
+          label: "Rejected",
+          progressWidth: "w-0",
+          progressColor: "bg-red-500",
+        };
+      case "validated":
+        return {
+          color: "text-orange-600",
+          bg: "bg-orange-50 border border-orange-400",
+          label: "Validated",
+          progressWidth: "w-2/5",
+          progressColor: "bg-orange-500",
+        };
+      case "due":
+        return {
+          color: "text-orange-600",
+          bg: "bg-orange-50 border border-orange-400",
+          label: "Due",
+          progressWidth: "w-3/5",
+          progressColor: "bg-orange-500",
+        };
+      case "overdue":
+        return {
+          color: "text-orange-600",
+          bg: "bg-orange-50 border border-orange-400",
           label: "Overdue",
+          progressWidth: "w-4/5",
+          progressColor: "bg-orange-500",
         };
       case "paid":
         return {
           color: "text-green-600",
           bg: "bg-green-50 border border-green-400",
           label: "Paid",
+          progressWidth: "w-full", // 100% pour paid
+          progressColor: "bg-green-500",
         };
       default:
         return {
           color: "text-gray-600",
           bg: "bg-gray-100 border border-gray-300",
           label: "Unknown",
+          progressWidth: "w-0", // 0% pour unknown
+          progressColor: "bg-gray-300",
         };
     }
   };
 
-  const { color, bg, label } = getStatusStyles(status);
+  const { color, bg, label, progressWidth, progressColor } =
+    getStatusStyles(status);
 
   return (
     <div className="invoice-status flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-lg shadow-md w-64">
@@ -50,15 +83,9 @@ const InvoiceStatus: React.FC<InvoiceStatusProps> = ({ status }) => {
       </span>
 
       {/* Barre de progression */}
-      <div className="progress-bar w-full mt-3 h-1.5 rounded bg-gray-200 overflow-hidden">
+      <div className="progress-bar w-full mt-3 h-1.5 rounded-full bg-gray-200 overflow-hidden relative">
         <div
-          className={`h-full transition-all duration-300 ${
-            status === "paid"
-              ? "bg-green-500 w-full"
-              : status === "overdue"
-              ? "bg-red-500 w-3/4"
-              : "bg-yellow-500 w-1/3"
-          }`}
+          className={`h-full ${progressColor} ${progressWidth} transition-all duration-500 ease-in-out`}
         ></div>
       </div>
     </div>
