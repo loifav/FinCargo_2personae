@@ -64,7 +64,7 @@ const DueOverdue = () => {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700"
                   >
-                    View Session of Rights PDF
+                    View PDF
                   </a>
                 )}
               </td>

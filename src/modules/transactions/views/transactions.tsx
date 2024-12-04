@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import DueOverdue from "../components/status/dueOverdue/DueOverdue";
 import FilterButtons from "@modules/transactions/components/filterButtons";
-import { useLocation } from "react-router-dom";
 
-function transactions() {
-  const location = useLocation();
+function Transactions() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterStatus = searchParams.get("tab") || "Overview";
 
-  const initialFilter = location.state?.filterStatus || ""; // Récupère le filtre transmis ou une valeur par défaut
+  const handleFilterChange = (filter: string) => {
+    setSearchParams({ tab: filter });
+  };
 
-  const [filterStatus, setFilterStatus] = useState<string>(initialFilter);
-
-  const handleFilterChange = (status: string) => {
-    setFilterStatus(status);
+  const renderContent = () => {
+    switch (filterStatus) {
+      case "toValidate":
+        return <div>Transaction to validate</div>;
+      case "dueAndOverdue":
+        return <DueOverdue />;
+      case "refused":
+        return <div>Transaction rejected</div>;
+      case "paid":
+        return <div>Transaction paid</div>;
+      default:
+        return <div>Default content</div>;
+    }
   };
 
   return (
@@ -19,13 +30,12 @@ function transactions() {
       <h1 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
         Transactions
       </h1>
+
       <FilterButtons onFilterChange={handleFilterChange} />
 
-      <div className="">
-        <DueOverdue />
-      </div>
+      <div className="mt-10">{renderContent()}</div>
     </div>
   );
 }
 
-export default transactions;
+export default Transactions;

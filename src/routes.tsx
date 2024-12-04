@@ -13,7 +13,10 @@ const TransactionDetail = lazy(
   () => import("@modules/transactions/views/transactionMainPage/show.tsx")
 );
 const PastTransaction = lazy(
-  () => import("@modules/transactions/views/transactionMainPage/pastTransaction.tsx")
+  () =>
+    import(
+      "@modules/transactions/views/transactionMainPage/pastTransaction.tsx"
+    )
 );
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
@@ -24,17 +27,15 @@ const InvoiceDetailsPage = lazy(
   () =>
     import("@modules/transactions/views/transactionDetails/invoiceDetailsPage")
 );
+
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const NotFound = () => <div>404 - Page non trouvée</div>;
-
-
 
 const LazyLoader = (Component: React.FC) => (
   <Suspense fallback={<LoadingSpinner />}>
     <Component />
   </Suspense>
 );
-
 
 const routes: RouteObject[] = [
   {
@@ -83,10 +84,6 @@ const routes: RouteObject[] = [
     path: "*",
     element: <NotFound />,
   },
-
- 
 ];
-
-
 
 export default routes;
