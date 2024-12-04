@@ -1,11 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import DueOverdue from "../components/status/dueOverdue/DueOverdue";
 import FilterButtons from "@modules/transactions/components/filterButtons";
+import {CreditProgressBar} from "@modules/transactions/components/TransactionMain/CreditProgressBar.tsx";
 
 function Transactions() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filterStatus = searchParams.get("tab") || "Overview";
-
+    const maxCredit = 5000;
+    const usedCredit = 1500;
   const handleFilterChange = (filter: string) => {
     setSearchParams({ tab: filter });
   };
@@ -30,7 +32,7 @@ function Transactions() {
       <h1 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
         Transactions
       </h1>
-
+        <CreditProgressBar maxCredit={maxCredit} usedCredit={usedCredit} />
       <FilterButtons onFilterChange={handleFilterChange} />
 
       <div className="mt-10">{renderContent()}</div>
