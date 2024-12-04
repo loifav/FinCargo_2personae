@@ -22,7 +22,7 @@
         "address": "Avenida de la Constitución 10, Sevilla",
         "country": "Spain",
         "document_download_link": "https://example.com/download/invoice2.pdf",
-        "status": "overdue"
+        "status": "validated"
       },
       {
         "id": 3,
@@ -34,7 +34,7 @@
         "address": "Calle del Prado 5, Barcelona",
         "country": "Spain",
         "document_download_link": "https://example.com/download/invoice3.pdf",
-        "status": "paid"
+        "status": "due"
       },
       {
         "id": 4,
@@ -46,7 +46,7 @@
         "address": "Gran Via 22, Bilbao",
         "country": "Spain",
         "document_download_link": "https://example.com/download/invoice4.pdf",
-        "status": "pending"
+        "status": "overdue"
       },
       {
         "id": 5,
@@ -58,7 +58,7 @@
         "address": "Paseo de la Castellana 100, Madrid",
         "country": "Spain",
         "document_download_link": "https://example.com/download/invoice5.pdf",
-        "status": "overdue"
+        "status": "rejected"
       },
       {
         "id": 6,

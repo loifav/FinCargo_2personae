@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { useTheme } from "@mui/material/styles";
-import transactionData from "../../../mocks/transaction.json"; 
+import transactionData from "../../../mocks/transaction.json";
 
 interface Transaction {
   id: number;
@@ -31,7 +31,8 @@ const DueNOverdueList: React.FC = () => {
   useEffect(() => {
     // Extraire uniquement les factures "pending" et "overdue"
     const filteredTransactions = transactionData.invoices.filter(
-      (invoice: any) => invoice.status === "pending" || invoice.status === "overdue"
+      (invoice: any) =>
+        invoice.status === "pending" || invoice.status === "overdue"
     );
     setTransactions(filteredTransactions);
   }, []);
@@ -72,8 +73,12 @@ const DueNOverdueList: React.FC = () => {
                 <TableCell component="th" scope="row">
                   {transaction.id}
                 </TableCell>
-                <TableCell align="right">{transaction.invoice_amount.toFixed(2)}</TableCell>
-                <TableCell align="right">{calculateDaysRemaining(transaction.invoice_date)}</TableCell>
+                <TableCell align="right">
+                  {transaction.invoice_amount.toFixed(2)}
+                </TableCell>
+                <TableCell align="right">
+                  {calculateDaysRemaining(transaction.invoice_date)}
+                </TableCell>
                 <TableCell align="right">
                   <IconButton
                     href={transaction.document_download_link}

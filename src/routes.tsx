@@ -10,31 +10,34 @@ const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const Home = lazy(() => import("@modules/home/views/dashboard"));
 const TransactionDetail = lazy(
-  () => import("@modules/dashboard/views/show.tsx")
+  () => import("@modules/transactions/views/transactionMainPage/show.tsx")
 );
 const PastTransaction = lazy(
-  () => import("@modules/dashboard/views/pastTransaction")
+  () =>
+    import(
+      "@modules/transactions/views/transactionMainPage/pastTransaction.tsx"
+    )
 );
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 const Transactions = lazy(
   () => import("@modules/transactions/views/transactions")
 );
-const InvoiceDetailsPage = lazy(
+const transactionDetailsPage = lazy(
   () =>
-    import("@modules/transactions/views/transactionDetails/invoiceDetailsPage")
+    import(
+      "@modules/transactions/views/transactionDetails/transactionDetailsPage"
+    )
 );
+
 const Settings = lazy(() => import("@modules/settings/views/settings"));
 const NotFound = () => <div>404 - Page non trouvée</div>;
-
-
 
 const LazyLoader = (Component: React.FC) => (
   <Suspense fallback={<LoadingSpinner />}>
     <Component />
   </Suspense>
 );
-
 
 const routes: RouteObject[] = [
   {
@@ -68,7 +71,7 @@ const routes: RouteObject[] = [
   {
     path: "/transactions/:id",
     element: (
-      <ProtectedLayout>{LazyLoader(InvoiceDetailsPage)}</ProtectedLayout>
+      <ProtectedLayout>{LazyLoader(transactionDetailsPage)}</ProtectedLayout>
     ),
   },
   {
@@ -83,10 +86,6 @@ const routes: RouteObject[] = [
     path: "*",
     element: <NotFound />,
   },
-
- 
 ];
-
-
 
 export default routes;

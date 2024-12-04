@@ -12,6 +12,10 @@ const InvoiceActions: React.FC<InvoiceActionsProps> = ({
   onAccept,
   onReject,
 }) => {
+  if (invoice.status !== "pending") {
+    return null;
+  }
+
   return (
     <div className="actions flex justify-center space-x-4 mt-6">
       <button
