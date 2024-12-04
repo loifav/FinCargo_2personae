@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import { useSearchParams } from "react-router-dom";
-import { FinCarrierFilter } from "@modules/core";
+import { FinCarrierFilter, FinSearch } from "@modules/core";
 
 export const InvoiceOverviewFF: React.FC = () => {
   const [selectedButton, setSelectedButton] = useState("Add a new invoice");
@@ -14,6 +13,9 @@ export const InvoiceOverviewFF: React.FC = () => {
     { label: "Overview", color: "bg-blue-500" },
   ];
 
+  // Suppression de `filteredData` inutilisé
+  const placeholderData = [{ name: "Example" }];
+
   useEffect(() => {
     const tab = searchParams.get("tab");
     if (tab && buttons.some((btn) => btn.label === tab)) {
@@ -23,7 +25,6 @@ export const InvoiceOverviewFF: React.FC = () => {
 
   const handleButtonClick = (button: string) => {
     setSelectedButton(button);
-    // setMenuOpen(false);
   };
 
   return (
@@ -31,7 +32,15 @@ export const InvoiceOverviewFF: React.FC = () => {
       <h2 className="text-primary-bluedark dark:text-gray-50 text-4xl uppercase font-bold pb-8">
         Invoices
       </h2>
-      <div className="pb-4">
+      <div className="flex gap-2 pb-4">
+        <FinSearch
+          placeholder="Search invoices..."
+          data={placeholderData}
+          filterKey="name"
+          onFilter={(filteredData) => {
+            console.log("Filtered Data:", filteredData);
+          }}
+        />
         <FinCarrierFilter
           value={selectedCarriers}
           onChange={setSelectedCarriers}
