@@ -31,6 +31,14 @@ const FreightForwarderLayout: React.FC<FreightForwarderLayoutProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}

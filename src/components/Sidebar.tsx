@@ -8,7 +8,6 @@ import {
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logoLight from "@assets/logo_fincargo_blue.svg";
 import logoDark from "@assets/logo_fincargo_white.svg";
-import { useAuth } from "@contexts/AuthContext";
 
 interface SidebarProps {
   mobileOpen: boolean;
@@ -23,6 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   return (
     <>
+      {/* Sidebar for Desktop */}
       <div
         className={`fixed top-0 left-0 w-60 h-full bg-blue-50 dark:bg-gray-900 ${
           mobileOpen ? "block" : "hidden"
@@ -34,6 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         />
       </div>
 
+      {/* Sidebar for Mobile */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 flex lg:hidden">
           <div
@@ -58,7 +59,6 @@ const SidebarContent: React.FC<{
 }> = ({ darkMode, handleDrawerToggle }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAuth();
 
   const handleLogout = () => {
     console.log("Logging out...");
@@ -66,73 +66,6 @@ const SidebarContent: React.FC<{
   };
 
   const isActive = (path: string) => location.pathname === path;
-
-  const renderSidebarItems = () => {
-    if (user?.role === "carrier") {
-      return (
-        <>
-          <SidebarItem
-            to="/"
-            icon={<DashboardIcon />}
-            label="Dashboard"
-            active={isActive("/")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <SidebarItem
-            to="/invoices"
-            icon={<InvoicesIcon />}
-            label="Invoices"
-            active={isActive("/invoices")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <SidebarItem
-            to="/settings"
-            icon={<SettingsIcon />}
-            label="Settings"
-            active={isActive("/settings")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-        </>
-      );
-    }
-
-    if (user?.role === "freight_forwarder") {
-      return (
-        <>
-          <SidebarItem
-            to="/"
-            icon={<DashboardIcon />}
-            label="Dashboard"
-            active={isActive("/")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <SidebarItem
-            to="/transactions"
-            icon={<InvoicesIcon />}
-            label="Transactions"
-            active={isActive("/transactions")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <SidebarItem
-            to="/analytics"
-            icon={<InvoicesIcon />}
-            label="Analytics"
-            active={isActive("/analytics")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-          <SidebarItem
-            to="/settings"
-            icon={<SettingsIcon />}
-            label="Settings"
-            active={isActive("/settings")}
-            handleDrawerToggle={handleDrawerToggle}
-          />
-        </>
-      );
-    }
-
-    return null; // Si le rôle est inconnu
-  };
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -146,11 +79,33 @@ const SidebarContent: React.FC<{
         </Link>
       </div>
 
-      <nav className="flex-1 px-4">{renderSidebarItems()}</nav>
+      <nav className="flex-1 px-4">
+        <SidebarItem
+          to="/"
+          icon={<DashboardIcon />}
+          label="Dashboard"
+          active={isActive("/")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+        <SidebarItem
+          to="/invoices"
+          icon={<InvoicesIcon />}
+          label="Invoices"
+          active={isActive("/invoices")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+        <SidebarItem
+          to="/settings"
+          icon={<SettingsIcon />}
+          label="Settings"
+          active={isActive("/settings")}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+      </nav>
 
       <div className="p-4">
         <button
-          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-blue-500 dark:text-gray-50 text-gray-900 py-2 px-4 rounded-3xl hover:bg-blue-500 dark:hover:bg-blue-700 hover:text-white transition"
+          className="w-full flex items-center justify-center gap-2 bg-gray-300 dark:bg-primary-bluelight dark:text-gray-50 text-gray-900 py-2 px-4 rounded-3xl hover:bg-primary-bluelight dark:hover:bg-primary-bluedark hover:text-white transition"
           onClick={() => {
             handleDrawerToggle();
             handleLogout();
@@ -176,7 +131,7 @@ const SidebarItem: React.FC<{
       to={to}
       className={`flex items-center gap-4 px-4 py-2 my-3 rounded-3xl ${
         active
-          ? "bg-blue-100 text-blue-800 shadow dark:bg-blue-700 dark:text-white"
+          ? "bg-blue-100 text-primary-bluedark shadow dark:bg-primary-bluedark  dark:text-white"
           : "text-gray-700 hover:bg-gray-200 hover:shadow dark:text-gray-300 dark:hover:bg-gray-700"
       } transition`}
       onClick={handleDrawerToggle}

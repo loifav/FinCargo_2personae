@@ -8,6 +8,7 @@ import { RouteObject } from "react-router-dom";
 const Dashboard = lazy(() => import("@modules/dashboard/views/dashboard"));
 const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
+const InvoiceUpload = lazy(() => import("@modules/invoices/views/invoiceUpload"))
 const Home = lazy(() => import("@modules/home/views/dashboard"));
 const TransactionDetail = lazy(
   () => import("@modules/transactions/views/transactionMainPage/show.tsx")
@@ -42,11 +43,15 @@ const LazyLoader = (Component: React.FC) => (
 const routes: RouteObject[] = [
   {
     path: "/",
-    element: <ProtectedLayout>{LazyLoader(Home)}</ProtectedLayout>,
+    element: <ProtectedLayout>{LazyLoader(Dashboard)}</ProtectedLayout>,
   },
   {
     path: "/invoices",
     element: <ProtectedLayout>{LazyLoader(Invoices)}</ProtectedLayout>,
+  },
+  {
+    path: "/invoices/upload",
+    element: <ProtectedLayout>{LazyLoader(InvoiceUpload)}</ProtectedLayout>,
   },
   {
     path: "/invoices/:id",

@@ -22,10 +22,10 @@ export default defineConfig({
   },
   plugins: [react()],
   server: {
-    host: "localhost", // Définit l'hôte
-    port: 3000, // Définit le port
-    strictPort: true, // Si true, échoue si le port est déjà utilisé
-    open: true, // Ouvre automatiquement le navigateur
+    host: "localhost",
+    port: 3000,
+    strictPort: true,
+    open: true,
     proxy: {
       "/api": {
         target: "https://fastapi-app-180162974123.europe-west6.run.app",

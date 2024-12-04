@@ -24,7 +24,7 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Vérifie la taille initialement
+    handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -32,7 +32,6 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
   }, []);
 
   useEffect(() => {
-    // Ajoute ou supprime la classe `dark` à <html>
     if (darkMode) {
       document.documentElement.classList.add("dark");
     } else {
