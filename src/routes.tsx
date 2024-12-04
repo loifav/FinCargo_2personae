@@ -10,10 +10,10 @@ const Invoices = lazy(() => import("@modules/invoices/views/overview"));
 const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const Home = lazy(() => import("@modules/home/views/dashboard"));
 const TransactionDetail = lazy(
-  () => import("@modules/dashboard/views/show.tsx")
+  () => import("@modules/transactions/views/transactionMainPage/show.tsx")
 );
 const PastTransaction = lazy(
-  () => import("@modules/dashboard/views/pastTransaction")
+  () => import("@modules/transactions/views/transactionMainPage/pastTransaction.tsx")
 );
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));

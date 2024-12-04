@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "@contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { CreditProgressBar } from "../components/CreditProgressBar";
+import { CreditProgressBar } from "../../transactions/components/TransactionMain/CreditProgressBar.tsx";
 import TransactionTable from "../components/transactionTable";
-import FilterButtons from "../components/filterButtons";
+import FilterButtons from "../../transactions/components/TransactionMain/filterButtons.tsx";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();

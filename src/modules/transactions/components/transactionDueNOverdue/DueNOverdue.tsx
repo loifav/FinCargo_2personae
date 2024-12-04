@@ -1,11 +1,10 @@
 import { Box, Typography, Divider } from "@mui/material";
-import InvoiceUploadButton from "../../invoices/components/InvoiceUploadButton";
-import DueNOverdueList from "../../invoices/components/DueNOverdueList";
-import FilterButtons from '../components/filterButtons'; 
+import DueNOverdueList from "../../../invoices/components/DueNOverdueList.tsx";
+import FilterButtons from '../TransactionMain/filterButtons.tsx';
 import React, { useState } from 'react';
 
 
-const Invoices: React.FC = () => {
+const DueNOverdue: React.FC = () => {
 
   const [filter, setFilter] = useState<string>('all'); 
 
@@ -28,14 +27,11 @@ const Invoices: React.FC = () => {
 
   
       <Divider />
-      
-      {/* Upload invoice */}
-      {/*<InvoiceUploadButton />*/}
-      {/* List of invoices */}
+      {/* List of due and overdue */}
       <DueNOverdueList />
      
     </Box>
   );
 };
 
-export default Invoices;
+export default DueNOverdue;
