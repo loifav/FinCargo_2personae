@@ -13,6 +13,10 @@ const DueOverdue = () => {
     navigate(`${id}`);
   };
 
+  const reportInvoice = (id: number) => {
+    console.log(`Reporting invoice with ID: ${id}`);
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Due and Overdue Payments</h2>
@@ -38,6 +42,9 @@ const DueOverdue = () => {
             </th>
             <th className="py-2 px-4 text-left text-sm font-semibold">
               View Details
+            </th>
+            <th className="py-2 px-4 text-left text-sm font-semibold">
+              Report
             </th>
           </tr>
         </thead>
@@ -74,6 +81,14 @@ const DueOverdue = () => {
                   className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
                 >
                   View Details
+                </button>
+              </td>
+              <td className="py-2 px-4 text-sm">
+                <button
+                  onClick={() => reportInvoice(invoice.id)}
+                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                >
+                  Report
                 </button>
               </td>
             </tr>

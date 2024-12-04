@@ -23,9 +23,11 @@ const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 const Transactions = lazy(
   () => import("@modules/transactions/views/transactions")
 );
-const InvoiceDetailsPage = lazy(
+const TransactionDetailsPage = lazy(
   () =>
-    import("@modules/transactions/views/transactionDetails/invoiceDetailsPage")
+    import(
+      "@modules/transactions/views/transactionDetails/transactionDetailsPage"
+    )
 );
 
 const Settings = lazy(() => import("@modules/settings/views/settings"));
@@ -69,7 +71,7 @@ const routes: RouteObject[] = [
   {
     path: "/transactions/:id",
     element: (
-      <ProtectedLayout>{LazyLoader(InvoiceDetailsPage)}</ProtectedLayout>
+      <ProtectedLayout>{LazyLoader(TransactionDetailsPage)}</ProtectedLayout>
     ),
   },
   {
