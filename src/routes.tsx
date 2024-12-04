@@ -23,7 +23,7 @@ const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 const Transactions = lazy(
   () => import("@modules/transactions/views/transactions")
 );
-const TransactionDetailsPage = lazy(
+const transactionDetailsPage = lazy(
   () =>
     import(
       "@modules/transactions/views/transactionDetails/transactionDetailsPage"
@@ -71,7 +71,7 @@ const routes: RouteObject[] = [
   {
     path: "/transactions/:id",
     element: (
-      <ProtectedLayout>{LazyLoader(TransactionDetailsPage)}</ProtectedLayout>
+      <ProtectedLayout>{LazyLoader(transactionDetailsPage)}</ProtectedLayout>
     ),
   },
   {

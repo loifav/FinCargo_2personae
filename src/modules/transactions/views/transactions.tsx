@@ -21,11 +21,9 @@ function Transactions() {
       case "dueAndOverdue":
         return <DueOverdue />;
       case "refused":
-        navigate("/pastTransaction", { state: { filterStatus: "refused" } });
-        break;
+        return <div>Transaction rejected</div>;
       case "paid":
-        navigate("/pastTransaction", { state: { filterStatus: "paid" } });
-        break;
+        return <div>Transaction paid</div>;
       default:
         return <div>Default content</div>;
     }

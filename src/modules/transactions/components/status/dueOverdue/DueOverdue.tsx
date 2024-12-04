@@ -14,12 +14,12 @@ const DueOverdue = () => {
   };
 
   const reportInvoice = (id: number) => {
-    console.log(`Reporting invoice with ID: ${id}`);
+    alert(`Invoice ${id} reported.`);
   };
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Due and Overdue Payments</h2>
+      <h2 className="text-2xl font-bold mb-4">Due and Overdue</h2>
 
       {/* Table of invoices */}
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md mb-4">
