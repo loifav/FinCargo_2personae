@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "@components/Sidebar";
+import SidebarCarrier from "@components/SidebarCarrier";
 import Headerbar from "@components/Headerbar";
 
 interface CarrierLayoutProps {
@@ -42,7 +42,7 @@ const CarrierLayout: React.FC<CarrierLayoutProps> = ({
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <Sidebar
+      <SidebarCarrier
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         darkMode={darkMode}

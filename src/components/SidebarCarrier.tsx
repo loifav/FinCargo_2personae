@@ -15,7 +15,7 @@ interface SidebarProps {
   darkMode: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
+const SidebarCarrier: React.FC<SidebarProps> = ({
   mobileOpen,
   handleDrawerToggle,
   darkMode,
@@ -142,4 +142,4 @@ const SidebarItem: React.FC<{
   );
 };
 
-export default Sidebar;
+export default SidebarCarrier;

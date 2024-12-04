@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@contexts/AuthContext";
-import CardGrid from "../components/carrier/cardGrid";
+import CarrierDashboard from "../components/carrier/CarrierDashboard";
 import FreightForwarderDashboard from "../components/freightforwarder/freightForwarderDashboard";
 
 const Dashboard: React.FC = () => {
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
   ];
 
   if (user.role === "carrier") {
-    return <CardGrid cards={cards} />;
+    return <CarrierDashboard cards={cards} />;
   }
 
   if (user.role === "freight_forwarder") {
@@ -36,19 +36,13 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="p-5 h-full bg-gray-50 dark:bg-gray-700 rounded-xl mt-20">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className={`relative flex flex-col items-center justify-center p-6 rounded-xl text-gray-800 dark:text-gray-50 ${card.color}`}
-            onClick={card.onClick}
-          >
-            <h2 className="text-xl font-semibold">{card.title}</h2>
-            <p className="text-3xl font-bold mt-2">{card.value}</p>
-          </div>
-        ))}
-      </div>
+    <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-xl mt-20 border-2 border-blue-100 shadow-sm">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+        Unauthorized
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400">
+        You do not have access to this page.
+      </p>
     </div>
   );
 };

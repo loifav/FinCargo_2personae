@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "@components/Sidebar";
+import SidebarFreightForwarder from "@components/SidebarFreightForwarder";
 import Headerbar from "@components/Headerbar";
 
 interface FreightForwarderLayoutProps {
@@ -42,7 +42,7 @@ const FreightForwarderLayout: React.FC<FreightForwarderLayoutProps> = ({
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <Sidebar
+      <SidebarFreightForwarder
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         darkMode={darkMode}

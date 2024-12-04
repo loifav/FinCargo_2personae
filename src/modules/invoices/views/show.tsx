@@ -21,6 +21,17 @@ const InvoiceDetail: React.FC = () => {
   if (user.role === "freight_forwarder") {
     return <TransactionDetails />;
   }
+
+  return (
+    <div className="p-4 bg-gray-50 dark:bg-gray-600 rounded-xl mt-20 border-2 border-blue-100 shadow-sm">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+        Unauthorized
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400">
+        You do not have access to this page.
+      </p>
+    </div>
+  );
 };
 
 export default InvoiceDetail;
