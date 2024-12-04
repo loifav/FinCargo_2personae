@@ -1,25 +1,8 @@
 // src/modules/home/components/CustomCell.tsx
 import React, { useState } from "react";
 
-interface CustomCellProps {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  name: string;
-  fill: string;
-  count: number;
-}
-
-const CustomCell: React.FC<CustomCellProps> = ({
-  x,
-  y,
-  width,
-  height,
-  name,
-  fill,
-  count,
-}) => {
+const CustomCell: React.FC<any> = (props) => {
+  const { x, y, width, height, name, fill, count } = props;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
