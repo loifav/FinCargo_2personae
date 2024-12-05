@@ -12,10 +12,6 @@ const InvoiceDetails: React.FC<InvoiceDetailsProps> = ({ invoice }) => (
       <strong>Invoice Amount:</strong> ${invoice.invoice_amount}
     </p>
     <p>
-      <strong>Invoice Attached:</strong>{" "}
-      {invoice.invoice_attached ? "Yes" : "No"}
-    </p>
-    <p>
       <strong>Carrier Name:</strong> {invoice.carrier_name}
     </p>
     <p>

@@ -52,7 +52,7 @@ const InvoiceStatus: React.FC<InvoiceStatusProps> = ({ status }) => {
           color: "text-green-600",
           bg: "bg-green-50 border border-green-400",
           label: "Paid",
-          progressWidth: "w-full", // 100% pour paid
+          progressWidth: "w-full",
           progressColor: "bg-green-500",
         };
       default:
@@ -60,7 +60,7 @@ const InvoiceStatus: React.FC<InvoiceStatusProps> = ({ status }) => {
           color: "text-gray-600",
           bg: "bg-gray-100 border border-gray-300",
           label: "Unknown",
-          progressWidth: "w-0", // 0% pour unknown
+          progressWidth: "w-0",
           progressColor: "bg-gray-300",
         };
     }
@@ -75,14 +75,12 @@ const InvoiceStatus: React.FC<InvoiceStatusProps> = ({ status }) => {
         Invoice status
       </h3>
 
-      {/* Label de statut */}
       <span
         className={`status-label py-1 px-3 rounded-full ${bg} ${color} text-xs font-medium tracking-wide`}
       >
         {label}
       </span>
 
-      {/* Barre de progression */}
       <div className="progress-bar w-full mt-3 h-1.5 rounded-full bg-gray-200 overflow-hidden relative">
         <div
           className={`h-full ${progressColor} ${progressWidth} transition-all duration-500 ease-in-out`}
