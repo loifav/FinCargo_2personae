@@ -41,18 +41,13 @@ const PastTransactionFileList: React.FC<Props> = ({ filterStatus }) => {
 
     if (filterStatus === "paid") {
       filtered = transactions.filter(
-        (transaction) => transaction.reasonCode < 50
+        (transaction) => transaction.reasonCode === 1
       );
     } else if (filterStatus === "refused") {
       filtered = transactions.filter(
-        (transaction) =>
-          transaction.reasonCode >= 50 && transaction.reasonCode <= 150
+        (transaction) => transaction.reasonCode === 2
       );
-    } else if (filterStatus === "pending") {
-      filtered = transactions.filter(
-        (transaction) => transaction.reasonCode > 150
-      );
-    } else {
+    }  else {
       filtered = transactions; // Aucun filtre, on affiche toutes les transactions
     }
 

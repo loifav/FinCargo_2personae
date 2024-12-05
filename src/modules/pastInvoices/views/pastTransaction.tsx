@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 const PastTransaction: React.FC = () => {
   // Récupération de l'état transmis depuis une autre vue
   const location = useLocation();
-  const initialFilter = location.state?.filterStatus || ""; // Récupère le filtre transmis ou une valeur par défaut
+  const initialFilter = location.state?.filterStatus || "paid"; // Récupère le filtre transmis ou une valeur par défaut
 
   // État local pour gérer le statut du filtre
   const [filterStatus, setFilterStatus] = useState<string>(initialFilter);
