@@ -23,53 +23,55 @@ const ToValidate: React.FC = () => {
     }
 
     return (
-
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow sx={{ borderBottom: "2px solid #e0e0e0" }}>
-                        <TableCell sx={{ borderBottom: "none" }}>ID</TableCell>
-                        <TableCell sx={{ borderBottom: "none" }}>Carrier Name</TableCell>
-                        <TableCell sx={{ borderBottom: "none", textAlign: "right" }}>Amount</TableCell>
-                        <TableCell sx={{ borderBottom: "none", textAlign: "center" }}>Actions</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {pendingInvoices.map((invoice) => (
-                        <TableRow
-                            key={invoice.id}
-                            sx={{
-                                borderBottom: "1px solid #e0e0e0",
-                                "&:last-child": { borderBottom: "none" },
-                            }}
-                        >
-                            <TableCell sx={{ borderBottom: "none" }}>{invoice.id}</TableCell>
-                            <TableCell sx={{ borderBottom: "none" }}>{invoice.carrier_name}</TableCell>
-                            <TableCell sx={{ borderBottom: "none", textAlign: "right" }}>
-                                ${invoice.invoice_amount.toFixed(2)}
-                            </TableCell>
-                            <TableCell sx={{ borderBottom: "none", textAlign: "center" }}>
-                                <Button
-                                    variant="contained"
-                                    color="success"
-                                    onClick={() => console.log(`Accepted invoice ID: ${invoice.id}`)}
-                                    style={{ marginRight: "8px" }}
-                                >
-                                    Accepter
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    color="error"
-                                    onClick={() => console.log(`Rejected invoice ID: ${invoice.id}`)}
-                                >
-                                    Rejeter
-                                </Button>
-                            </TableCell>
+        <div>
+            <h2 className="text-2xl font-bold mb-4">Transaction to validate</h2>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow sx={{borderBottom: "2px solid #e0e0e0"}}>
+                            <TableCell sx={{borderBottom: "none"}}>ID</TableCell>
+                            <TableCell sx={{borderBottom: "none"}}>Carrier Name</TableCell>
+                            <TableCell sx={{borderBottom: "none", textAlign: "right"}}>Amount</TableCell>
+                            <TableCell sx={{borderBottom: "none", textAlign: "center"}}>Actions</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {pendingInvoices.map((invoice) => (
+                            <TableRow
+                                key={invoice.id}
+                                sx={{
+                                    borderBottom: "1px solid #e0e0e0",
+                                    "&:last-child": {borderBottom: "none"},
+                                }}
+                            >
+                                <TableCell sx={{borderBottom: "none"}}>{invoice.id}</TableCell>
+                                <TableCell sx={{borderBottom: "none"}}>{invoice.carrier_name}</TableCell>
+                                <TableCell sx={{borderBottom: "none", textAlign: "right"}}>
+                                    ${invoice.invoice_amount.toFixed(2)}
+                                </TableCell>
+                                <TableCell sx={{borderBottom: "none", textAlign: "center"}}>
+                                    <Button
+                                        variant="contained"
+                                        color="success"
+                                        onClick={() => console.log(`Accepted invoice ID: ${invoice.id}`)}
+                                        style={{marginRight: "8px"}}
+                                    >
+                                        Validate
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="error"
+                                        onClick={() => console.log(`Rejected invoice ID: ${invoice.id}`)}
+                                    >
+                                        Reject
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
 };
 

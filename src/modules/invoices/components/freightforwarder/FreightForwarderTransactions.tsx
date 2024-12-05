@@ -27,14 +27,14 @@ const FreightForwarderTransactions: React.FC = () => {
       case "refused":
         return (
             <div>
-              <h2 className="text-xl font-bold mb-4">Rejected Transactions</h2>
+              <h2 className="text-2xl font-bold mb-4">Rejected Transactions</h2>
               <PastTransactionFileList filterStatus="refused" />
             </div>
         );
       case "paid":
         return (
             <div>
-              <h2 className="text-xl font-bold mb-4">Paid Transactions</h2>
+              <h2 className="text-2xl font-bold mb-4">Paid Transactions</h2>
               <PastTransactionFileList filterStatus="paid" />
             </div>
         );
