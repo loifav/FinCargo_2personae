@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import PastTransactionFileList from "@modules/pastInvoices/components/transactionPast/PastTransactionFileList";
+import PastTransactionFileList from "@modules/invoices/components/freightforwarder/status/transactionPast/PastTransactionFileList";
 import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
 import { useLocation } from "react-router-dom";
 

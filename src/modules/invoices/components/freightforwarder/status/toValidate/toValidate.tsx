@@ -1,45 +1,76 @@
 import React from "react";
-import { transactionData } from "./data/transactionData";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    Button,
+} from "@mui/material";
+import transactionData from "../../../../../../mocks/transaction.json"; // Import des données JSON
 
-interface Props {
-    filterStatus: string;
-}
+const ToValidate: React.FC = () => {
+    // Filtrer les factures avec le statut "pending"
+    const pendingInvoices = transactionData.invoices.filter(
+        (invoice) => invoice.status === "pending"
+    );
 
-const ToValidate: React.FC<Props> = ({ filterStatus }) => {
-    const filteredTransactions = transactionData.filter((txn) => txn.status === filterStatus);
-
-    if (filteredTransactions.length === 0) {
-        return <div>No transactions found for the selected filter.</div>;
+    // Si aucune facture "pending" n'existe
+    if (pendingInvoices.length === 0) {
+        return <div>No pending invoices found.</div>;
     }
 
     return (
         <div>
-            {filteredTransactions.map((txn) => (
-                <div
-                    key={txn.id}
-                    className="border p-4 mb-4 rounded-md shadow-sm bg-white dark:bg-gray-700"
-                >
-                    <p className="font-bold">Transaction ID: {txn.id}</p>
-                    <p>Amount: ${txn.amount}</p>
-                    <button
-                        onClick={() => console.log(`Navigating to /transactions/${txn.id}`)}
-                        className="text-blue-500 underline"
-                    >
-                        View Invoice
-                    </button>
-                    <div className="mt-4 flex gap-2">
-                        {txn.actions.map((action, idx) => (
-                            <button
-                                key={idx}
-                                onClick={action.onClick}
-                                className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
+            <h2 className="text-2xl font-bold mb-4">Transaction to validate</h2>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow sx={{borderBottom: "2px solid #e0e0e0"}}>
+                            <TableCell sx={{borderBottom: "none"}}>ID</TableCell>
+                            <TableCell sx={{borderBottom: "none"}}>Carrier Name</TableCell>
+                            <TableCell sx={{borderBottom: "none", textAlign: "right"}}>Amount</TableCell>
+                            <TableCell sx={{borderBottom: "none", textAlign: "center"}}>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {pendingInvoices.map((invoice) => (
+                            <TableRow
+                                key={invoice.id}
+                                sx={{
+                                    borderBottom: "1px solid #e0e0e0",
+                                    "&:last-child": {borderBottom: "none"},
+                                }}
                             >
-                                {action.label}
-                            </button>
+                                <TableCell sx={{borderBottom: "none"}}>{invoice.id}</TableCell>
+                                <TableCell sx={{borderBottom: "none"}}>{invoice.carrier_name}</TableCell>
+                                <TableCell sx={{borderBottom: "none", textAlign: "right"}}>
+                                    ${invoice.invoice_amount.toFixed(2)}
+                                </TableCell>
+                                <TableCell sx={{borderBottom: "none", textAlign: "center"}}>
+                                    <Button
+                                        variant="contained"
+                                        color="success"
+                                        onClick={() => console.log(`Accepted invoice ID: ${invoice.id}`)}
+                                        style={{marginRight: "8px"}}
+                                    >
+                                        Validate
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="error"
+                                        onClick={() => console.log(`Rejected invoice ID: ${invoice.id}`)}
+                                    >
+                                        Reject
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
                         ))}
-                    </div>
-                </div>
-            ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 };

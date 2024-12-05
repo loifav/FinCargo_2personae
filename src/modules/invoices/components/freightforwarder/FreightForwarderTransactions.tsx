@@ -1,10 +1,11 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import DueOverdue from "./statusInvoices/DueOverdue";
+import DueOverdue from "../../components/freightforwarder/status/dueOverdue/DueOverdue";
 import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
 import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/CreditProgressBar";
-import PastTransactionFileList from "@modules/pastInvoices/components/transactionPast/PastTransactionFileList";
+import PastTransactionFileList from "@modules/invoices/components/freightforwarder/status/transactionPast/PastTransactionFileList";
 import ToValidate from "../../components/freightforwarder/status/toValidate/toValidate";
+
 
 const FreightForwarderTransactions: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,14 +27,14 @@ const FreightForwarderTransactions: React.FC = () => {
       case "refused":
         return (
           <div>
-            <h2 className="text-xl font-bold mb-4">Rejected Transactions</h2>
+            <h2 className="text-2xl font-bold mb-4">Rejected Transactions</h2>
             <PastTransactionFileList filterStatus="refused" />
           </div>
         );
       case "paid":
         return (
           <div>
-            <h2 className="text-xl font-bold mb-4">Paid Transactions</h2>
+            <h2 className="text-2xl font-bold mb-4">Paid Transactions</h2>
             <PastTransactionFileList filterStatus="paid" />
           </div>
         );
