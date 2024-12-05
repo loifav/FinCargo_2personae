@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import DueOverdue from "../../components/freightforwarder/status/dueOverdue/DueOverdue";
 import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
 import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/CreditProgressBar";
-import PastTransactionFileList from "@modules/pastInvoices/components/transactionPast/PastTransactionFileList";
+import PastTransactionFileList from "@modules/invoices/components/freightforwarder/status/transactionPast/PastTransactionFileList";
 import ToValidate from "../../components/freightforwarder/status/toValidate/toValidate";
 
 

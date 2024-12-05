@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import PastTransactionTable from "./PastTransactionTable.tsx";
 import PastTransactionFilters from "./PastTransactionFilters.tsx"; // Import du composant de filtre
-import transactionData from "../../../../mocks/pasttransactions.json";
-import { PastTransaction } from "../../../../types/PastTransaction.ts";
+import transactionData from "../../../../../../mocks/pasttransactions.json";
+import { PastTransaction } from "../../../../../../types/PastTransaction.ts";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
@@ -73,7 +73,7 @@ const PastTransactionFileList: React.FC<Props> = ({ filterStatus }) => {
 
   // Fonction pour gérer la navigation (View) vers la transaction sélectionnée
   const handleViewClick = (id: number) => {
-    navigate(`invoices/${id}`); // Redirige vers la page de la transaction avec l'ID
+    navigate(`${id}`); // Redirige vers la page de la transaction avec l'ID
   };
 
   // Fonction pour gérer le téléchargement (Download) de la transaction sélectionnée
