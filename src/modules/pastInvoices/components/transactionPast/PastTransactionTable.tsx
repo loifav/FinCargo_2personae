@@ -71,7 +71,6 @@ const PastTransactionTable: React.FC<Props> = ({
             <TableCell align="right">Raw</TableCell>
             <TableCell align="right">Net</TableCell>
             <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Reason Code</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -83,7 +82,6 @@ const PastTransactionTable: React.FC<Props> = ({
               <TableCell align="right">{transaction.raw}</TableCell>
               <TableCell align="right">{transaction.net}</TableCell>
               <TableCell align="right">{transaction.invoiceDate}</TableCell>
-              <TableCell align="right">{transaction.reasonCode}</TableCell>
               <TableCell>
                 <IconButton
                   onClick={(event) => handleMenuClick(event, transaction.id)}
