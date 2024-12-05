@@ -73,7 +73,7 @@ const PastTransactionFileList: React.FC<Props> = ({ filterStatus }) => {
 
   // Fonction pour gérer la navigation (View) vers la transaction sélectionnée
   const handleViewClick = (id: number) => {
-    navigate(`transactions/${id}`); // Redirige vers la page de la transaction avec l'ID
+    navigate(`invoices/${id}`); // Redirige vers la page de la transaction avec l'ID
   };
 
   // Fonction pour gérer le téléchargement (Download) de la transaction sélectionnée
