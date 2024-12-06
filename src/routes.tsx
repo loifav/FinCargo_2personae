@@ -11,9 +11,7 @@ const InvoiceDetail = lazy(() => import("@modules/invoices/views/show"));
 const InvoiceUpload = lazy(
   () => import("@modules/invoices/views/invoiceUpload")
 );
-const PastInvoices = lazy(
-  () => import("@modules/pastInvoices/views/pastTransaction")
-);
+
 const Login = lazy(() => import("@modules/auth/views/login"));
 const Analytics = lazy(() => import("@modules/analytics/views/analytics"));
 
@@ -47,10 +45,7 @@ const routes: RouteObject[] = [
     path: "/analytics",
     element: <ProtectedLayout>{LazyLoader(Analytics)}</ProtectedLayout>,
   },
-  {
-    path: "/pastinvoices",
-    element: <ProtectedLayout>{LazyLoader(PastInvoices)}</ProtectedLayout>,
-  },
+  
   {
     path: "/settings",
     element: <ProtectedLayout>{LazyLoader(Settings)}</ProtectedLayout>,

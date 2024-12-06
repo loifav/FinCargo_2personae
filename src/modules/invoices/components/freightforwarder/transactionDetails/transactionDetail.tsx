@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import transactionData from "../../../../../mocks/transaction.json";
 import InvoiceStatus from "./InvoiceStatus";
@@ -7,13 +7,10 @@ import InvoiceActions from "./InvoiceActions";
 import { Invoice } from "../../../../../types/InvoiceTypes";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useTransactionActions } from "@modules/invoices/api/hooks/useTransactionActions";
 
 const TransactionDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { acceptTransaction, rejectTransaction, loading, error } =
-    useTransactionActions();
 
   if (!id) {
     return <div className="text-red-500">Invoice ID missing from URL</div>;
@@ -39,19 +36,17 @@ const TransactionDetails: React.FC = () => {
 
   const handleAccept = async () => {
     try {
-      await acceptTransaction(invoiceId);
       console.log("Invoice accepted");
     } catch (err) {
-      console.error("Failed to accept transaction:", error);
+      console.error("Failed to accept transaction:", err);
     }
   };
 
   const handleReject = async () => {
     try {
-      await rejectTransaction(invoiceId);
       console.log("Invoice rejected");
     } catch (err) {
-      console.error("Failed to reject transaction:", error);
+      console.error("Failed to reject transaction:", err);
     }
   };
 
