@@ -9,7 +9,7 @@ import {
     Paper,
     Button,
 } from "@mui/material";
-import transactionData from "../../../../../../mocks/transaction.json"; // Import des données JSON
+import transactionData from "@mokes/transaction.json"; // Import des données JSON
 
 const ToValidate: React.FC = () => {
     // Filtrer les factures avec le statut "pending"
