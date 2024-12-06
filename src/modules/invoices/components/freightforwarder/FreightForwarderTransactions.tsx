@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import DueOverdue from "../../components/freightforwarder/status/dueOverdue/DueOverdue";
+import DueOverdue from "./statusInvoices/DueOverdue";
 import FilterButtons from "@modules/invoices/components/freightforwarder/filterButtons";
 import { CreditProgressBar } from "@modules/invoices/components/freightforwarder/CreditProgressBar";
 import PastTransactionFileList from "@modules/invoices/components/freightforwarder/status/transactionPast/PastTransactionFileList";
