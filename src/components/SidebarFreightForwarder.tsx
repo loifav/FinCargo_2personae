@@ -103,13 +103,6 @@ const SidebarContent: React.FC<{
           handleDrawerToggle={handleDrawerToggle}
         />
         <SidebarItem
-          to="/pastinvoices"
-          icon={<InvoicesIcon />}
-          label="Past Invoices"
-          active={isActive("/pastinvoices")}
-          handleDrawerToggle={handleDrawerToggle}
-        />
-        <SidebarItem
           to="/settings"
           icon={<SettingsIcon />}
           label="Settings"
